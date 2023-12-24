@@ -18,6 +18,16 @@ return new class extends Migration
             $table->boolean('opcional');
             $table->timestamps();
         });
+        /**
+         *CREATE TABLE ingredientes (
+            *id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            *nombre VARCHAR(255) NOT NULL,
+            *cantidad_ingredientes VARCHAR(255) NOT NULL,
+            *opcional BOOLEAN NOT NULL,
+            *created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+            *updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        *);
+         */
     }
 
     /**

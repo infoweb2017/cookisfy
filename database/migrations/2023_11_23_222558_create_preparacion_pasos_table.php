@@ -20,6 +20,20 @@ return new class extends Migration
 
             $table->foreign('receta_id')->references('id')->on('recetas')->onDelete('cascade');
         });
+        /**
+         * CREATE TABLE preparacion_pasos (
+            * id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            * receta_id BIGINT UNSIGNED NOT NULL,
+            * pasos TEXT NOT NULL,
+            * solicitar INT NULL,
+            * created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+            * updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        * );
+
+        * -- Clave foránea referenciando a 'recetas'
+        * ALTER TABLE preparacion_pasos ADD CONSTRAINT fk_preparacion_pasos_receta_id FOREIGN KEY (receta_id) REFERENCES recetas(id) ON DELETE CASCADE;
+
+         */
     }
 
     /**

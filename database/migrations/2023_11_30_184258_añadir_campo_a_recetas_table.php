@@ -16,6 +16,14 @@ return new class extends Migration
             $table->integer('tiempo_preparacion'); // Nuevo campo para el tiempo de preparación en minutos
             $table->unsignedBigInteger('categoria_id'); // Nuevo campo para la clave foránea de la categoría
         });
+        /**
+         * ALTER TABLE recetas ADD COLUMN categoria VARCHAR(255) NOT NULL;
+        * ALTER TABLE recetas ADD COLUMN tiempo_preparacion INT NOT NULL;
+        * ALTER TABLE recetas ADD COLUMN categoria_id BIGINT UNSIGNED NOT NULL;
+
+        * -- Si 'categoria_id' es una clave foránea que referencia a la tabla 'categorias', también necesitarás agregar la siguiente línea:
+        * ALTER TABLE recetas ADD CONSTRAINT fk_recetas_categoria_id FOREIGN KEY (categoria_id) REFERENCES categorias(id) ON DELETE CASCADE;
+         */
     }
 
     /**

@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin',
     ];
 
     /**
@@ -58,5 +59,13 @@ class User extends Authenticatable
     public function calificacion()
     {
         return $this->hasMany(calificacion::class);
+    }
+
+    public function recetas(){
+        return $this->hasMany(Receta::class);
+    }
+    public function routeNotificationForMail()
+    {
+        return $this->email; // Cambia esto según tu estructura de datos
     }
 }

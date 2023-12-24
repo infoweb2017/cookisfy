@@ -19,6 +19,22 @@ return new class extends Migration
             $table->string('unidad'); // Unidad de medida
             $table->timestamps();
         });
+        /** 
+         * CREATE TABLE receta_ingrediente (
+            *id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            *receta_id BIGINT UNSIGNED NOT NULL,
+            *ingrediente_id BIGINT UNSIGNED NOT NULL,
+            *cantidad DECIMAL(8, 2) NOT NULL,
+            *unidad VARCHAR(255) NOT NULL,
+            *created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+            *updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        *);
+
+        *-- Claves foráneas referenciando a 'recetas' y 'ingredientes'
+        *ALTER TABLE receta_ingrediente ADD CONSTRAINT fk_receta_ingrediente_receta_id FOREIGN KEY (receta_id) REFERENCES recetas(id) ON DELETE CASCADE;
+        *ALTER TABLE receta_ingrediente ADD CONSTRAINT fk_receta_ingrediente_ingrediente_id FOREIGN KEY (ingrediente_id) REFERENCES ingredientes(id) ON DELETE CASCADE;
+        */
+
     }
 
     /**

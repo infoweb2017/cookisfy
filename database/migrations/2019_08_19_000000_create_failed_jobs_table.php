@@ -20,6 +20,17 @@ return new class extends Migration
             $table->longText('exception');
             $table->timestamp('failed_at')->useCurrent();
         });
+        /**
+         * CREATE TABLE failed_jobs (
+            *id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            *uuid VARCHAR(255) UNIQUE NOT NULL,
+            *connection TEXT NOT NULL,
+            *queue TEXT NOT NULL,
+            *payload LONGTEXT NOT NULL,
+            *exception LONGTEXT NOT NULL,
+            *failed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+            *);
+         */
     }
 
     /**

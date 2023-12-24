@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\comentario;
 use Illuminate\Http\Request;
+use app\Models\Receta;
 
 class ComentarioController extends Controller
 {
@@ -26,19 +27,19 @@ class ComentarioController extends Controller
     {
         // Validación del formulario (personaliza según tus necesidades)
         $request->validate([
-            'comentario' => 'required|string|max:255',
+            'contenidos' => 'required|string|max:255',
         ]);
 
         // Crea el comentario asociado a la receta y al usuario autenticado
-        Comentario::create([
-            'user_id' => auth()->user()->id,
-            'receta_id' => $receta->id,
-            'comentario' => $request->input('comentario'),
-        ]);
+        $comentario = new Comentario();
+        $comentario->receta_id = $receta->id;
+        $comentario->user_id = auth()->id(); // Asume que quieres rastrear qué usuario hizo el comentario
+        $comentario->comentarios = $request->comentarios;
+        $comentario->save();
 
-        
-  
-return redirect()->route('recetas.show', $receta->id)->with('success', 'Comentario enviado con éxito.');
+
+
+        return redirect()->route('recetas.show', $receta->id)->with('success', 'Comentario enviado con éxito.');
     }
     /**
      * Display the specified resource.

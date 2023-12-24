@@ -13,7 +13,7 @@ use Illuminate\View\View;
 class AuthenticatedSessionController extends Controller
 {
     /**
-     * Display the login view.
+     * Mostrar la vista de inicio de sesión.
      */
     public function create(): View
     {
@@ -21,7 +21,7 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
-     * Handle an incoming authentication request.
+     * Gestiona una solicitud de autenticación entrante.
      */
     public function store(LoginRequest $request): RedirectResponse
     {
@@ -29,11 +29,19 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if (Auth::user()->is_admin) {
+            // Redirigir al administrador a su página de dashboard
+            return redirect()->intended(RouteServiceProvider::ADMIN);
+        } else {
+            // Redirigir al usuario normal a su página principal
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+
+       
     }
 
     /**
-     * Destroy an authenticated session.
+     * Destruye una sesión autenticada.
      */
     public function destroy(Request $request): RedirectResponse
     {
@@ -43,6 +51,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/welcome');
     }
 }

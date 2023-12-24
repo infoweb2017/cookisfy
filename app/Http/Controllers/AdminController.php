@@ -10,7 +10,7 @@ class AdminController extends Controller
     // Método para mostrar el index del administrador
     public function index()
     {
-        return view('admin.bienvenido');
+        return view('admin.admin-dashboard');
     }
 
     // Método para mostrar una lista de usuarios
@@ -24,7 +24,7 @@ class AdminController extends Controller
     public function editUser($id)
     {
         $user = User::findOrFail($id);
-        return view('admin.users.edit', compact('users'));
+        return view('', compact('users'));
     }
 
     // Método para actualizar un usuario

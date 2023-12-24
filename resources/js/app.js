@@ -1,7 +1,39 @@
 import './bootstrap';
 
-import Alpine from 'alpinejs';
+//Pasos de preparacion
+document.addEventListener('DOMContentLoaded', function () {
+    let pasoContador = document.querySelectorAll('#pasos-container .paso').length + 1;
 
-window.Alpine = Alpine;
+    const btnAgregarPaso = document.getElementById('btn-agregar-paso');
+    if (btnAgregarPaso) {
+        btnAgregarPaso.addEventListener('click', function () {
+            const pasoContainer = document.getElementById('pasos-container');
+            const newPaso = document.createElement('div');
+            newPaso.classList.add('paso');
+            newPaso.innerHTML = `<textarea name="pasos[${pasoContador}]" class="form-control" placeholder="Paso ${pasoContador}"></textarea>`;
+            pasoContainer.appendChild(newPaso);
+            pasoContador++;
+        });
+    }
+});
 
-Alpine.start();
+
+/**Boton ocultar redes sociales en recetas */
+document.addEventListener('DOMContentLoaded', function () {
+    let btnCompartir = document.getElementById('btnCompartir');
+    let opcionesCompartir = document.getElementById('opcionesCompartir');
+
+    btnCompartir.addEventListener('click', function () {
+        opcionesCompartir.style.display = opcionesCompartir.style.display === 'none' ? 'block' : 'none';
+    });
+
+    // Opcional: Ocultar la ventana emergente al hacer clic fuera de ella
+    window.addEventListener('click', function (e) {
+        if (!btnCompartir.contains(e.target) && !opcionesCompartir.contains(e.target)) {
+            opcionesCompartir.style.display = 'none';
+        }
+    });
+});
+
+
+

@@ -20,6 +20,20 @@ return new class extends Migration
             $table->text('consulta');
             $table->timestamps();
         });
+
+        /**
+         * CREATE TABLE contactos (
+            *id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            *nombre VARCHAR(255) NOT NULL,
+            *apellidos VARCHAR(255) NOT NULL,
+            *telefono VARCHAR(255) NOT NULL,
+            *correo VARCHAR(255) NOT NULL,
+            *consulta TEXT NOT NULL,
+            *created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+            *updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        *);
+
+         */
     }
 
     /**

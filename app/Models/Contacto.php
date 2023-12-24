@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contacto extends Model
 {
-    use HasFactory;
+    protected $table = 'contactos';
+    protected $fillable = [
+        'nombre',
+        'apellidos',
+        'telefono',
+        'correo',
+        'consulta',
+    ];
 }

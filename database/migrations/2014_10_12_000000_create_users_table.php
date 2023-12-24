@@ -21,10 +21,10 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            /*$table->unsignedBigInteger('imagen_perfil')->nullable(); // Clave foránea, BIGINT UNSIGNED
+            $table->unsignedBigInteger('imagen_perfil')->nullable(); // Clave foránea, BIGINT UNSIGNED
 
             // Definición de la clave foránea
-            $table->foreign('imagen_perfil')->references('id')->on('imagen_perfils')->onDelete('set null');*/
+            $table->foreign('imagen_perfil')->references('id')->on('imagen_perfils')->onDelete('set null');
         });
 
         /*** CREATE TABLE `users` (

@@ -12,8 +12,8 @@ class Calificacion extends Model
     /**
      * Conectamos a la bd traves de la variable $table  para asi poder manipular la informacion
      */
-    protected $guarded = [];
-    protected $table = 'calificacions';
+
+    protected $table = ['receta_id','user_id','valoración','reseña'];
 
     //Una reseña pertenece a una receta
     public function recetas(){

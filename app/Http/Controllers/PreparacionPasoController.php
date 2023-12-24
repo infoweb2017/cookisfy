@@ -3,63 +3,66 @@
 namespace App\Http\Controllers;
 
 use App\Models\preparacion_paso;
+use App\Models\Receta;
 use Illuminate\Http\Request;
 
 class PreparacionPasoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    // Mostrar todos los pasos de una receta específica
+    public function index($recetaId)
     {
-        //
+        $receta = Receta::with('pasos')->findOrFail($recetaId);
+        return view('pasos.index', compact('receta'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    // Mostrar el formulario para agregar un nuevo paso
+    public function create($recetaId)
     {
-        //
+        return view('pasos.create', compact('recetaId'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    // Guardar un nuevo paso
+    public function store(Request $request, $recetaId)
     {
-        //
+        $request->validate([
+            'descripcion' => 'required',
+            // Otros campos si son necesarios
+        ]);
+
+        $receta = Receta::findOrFail($recetaId);
+        $receta->pasos()->create($request->all());
+
+        return redirect()->route('pasos.index', $recetaId)->with('success', 'Paso creado con éxito.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(preparacion_paso $preparacion_paso)
+    // Mostrar el formulario para editar un paso existente
+    public function edit($id)
     {
-        //
+        $paso = Preparacion_paso::findOrFail($id);
+        return view('pasos.edit', compact('paso'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(preparacion_paso $preparacion_paso)
+    // Actualizar un paso
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'descripcion' => 'required',
+            // Otros campos si son necesarios
+        ]);
+
+        $paso = Preparacion_paso::findOrFail($id);
+        $paso->update($request->all());
+
+        return redirect()->route('pasos.index', $paso->receta_id)->with('success', 'Paso actualizado con éxito.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, preparacion_paso $preparacion_paso)
+    // Eliminar un paso
+    public function destroy($id)
     {
-        //
-    }
+        $paso = Preparacion_paso::findOrFail($id);
+        $recetaId = $paso->receta_id;
+        $paso->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(preparacion_paso $preparacion_paso)
-    {
-        //
+        return redirect()->route('pasos.index', $recetaId)->with('success', 'Paso eliminado con éxito.');
     }
 }

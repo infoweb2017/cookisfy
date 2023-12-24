@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Receta;
 use Illuminate\Http\Request;
 
 class BuscarController extends Controller

@@ -18,6 +18,14 @@ return new class extends Migration
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
+        /**
+         * CREATE TABLE password_resets (
+            *email VARCHAR(255) NOT NULL,
+            *token VARCHAR(255) NOT NULL,
+            *created_at TIMESTAMP NULL DEFAULT NULL,
+            *INDEX (email)
+        *);
+         */
     }
 
     /**

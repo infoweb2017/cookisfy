@@ -1,1 +1,285 @@
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
 
+/* Color Theme Swatches in Hex */
+.Bootstrap-Pastel-Colors-1-hex {
+    color: #dff0d8;
+}
+.Bootstrap-Pastel-Colors-2-hex {
+    color: #d9edf7;
+}
+.Bootstrap-Pastel-Colors-3-hex {
+    color: #f5f5f5;
+}
+.Bootstrap-Pastel-Colors-4-hex {
+    color: #fcf8e3;
+}
+.Bootstrap-Pastel-Colors-5-hex {
+    color: #f2dede;
+}
+
+/* Color Theme Swatches in RGBA */
+.Bootstrap-Pastel-Colors-1-rgba {
+    color: rgba(223, 239, 216, 1);
+}
+.Bootstrap-Pastel-Colors-2-rgba {
+    color: rgba(216, 237, 246, 1);
+}
+.Bootstrap-Pastel-Colors-3-rgba {
+    color: rgba(244, 244, 244, 1);
+}
+.Bootstrap-Pastel-Colors-4-rgba {
+    color: rgba(251, 247, 226, 1);
+}
+.Bootstrap-Pastel-Colors-5-rgba {
+    color: rgba(242, 221, 221, 1);
+}
+
+/* Color Theme Swatches in HSLA */
+.Bootstrap-Pastel-Colors-1-hsla {
+    color: hsla(102, 44, 89, 1);
+}
+.Bootstrap-Pastel-Colors-2-hsla {
+    color: hsla(199, 65, 90, 1);
+}
+.Bootstrap-Pastel-Colors-3-hsla {
+    color: hsla(0, 0, 96, 1);
+}
+.Bootstrap-Pastel-Colors-4-hsla {
+    color: hsla(50, 80, 93, 1);
+}
+.Bootstrap-Pastel-Colors-5-hsla {
+    color: hsla(0, 43, 90, 1);
+}
+
+#receta-slider {
+    height: 400px;
+}
+.carousel-inner {
+    height: 400px;
+}
+/* Archivo public/css/custom.css o tu ubicación personalizada */
+
+/* Cambiar el color de fondo del formulario */
+.form-control {
+    background-color: #fafafa;
+}
+
+/* Cambiar el color del texto en el formulario */
+.form-control,
+.btn {
+    color: #083b58;
+}
+
+/* Cambiar el color de fondo del botón */
+.btn-primary {
+    background-color: #c2858b;
+    border-color: #b4646c;
+    margin-left: 5px;
+}
+.btn-primary-recetas {
+    background-color: #c2858b;
+    border-color: #382727;
+    margin-left: 30%;
+    width: 40%;
+}
+.btn-primary-recetas:hover {
+    color: #fff;
+    background-color: #53739c;
+    border-color: #426272;
+}
+/* Cambiar el color del texto en el botón */
+.btn-primary:hover {
+    color: #fff;
+    background-color: #53739c;
+    border-color: #426272;
+}
+
+/* Cambiar el color del enlace de registro */
+.register-link {
+    color: #7fa8d4;
+}
+.color-secundario {
+    background-color: #c8d5f5;
+}
+.color-secundario-2 {
+    background-color: #efbbbb;
+}
+.nav-link {
+    color: #0b2636;
+}
+.nav-link:hover {
+    color: #549dbe;
+}
+.nav-buscar-home {
+    margin-left: 10vw;
+}
+.nav-buscar {
+    margin-left: 30vw;
+}
+.banner {
+    height: 33px;
+    width: 100%;
+    background-color: #c8d5f5;
+    display: flex; /* Mostrar los elementos en línea (uno al lado del otro) */
+    justify-content: space-between; /* Distribuir el espacio horizontalmente */
+    align-items: center; /* Centrar verticalmente los elementos */
+    padding: 23px 15px; /* Ajusta el espaciado según tus preferencias */
+}
+.banner h1 {
+    text-align: center;
+    text-shadow: #083b58;
+    font-size: 2.5rem;
+}
+.banner p {
+    font-size: 1.2rem;
+    text-align: center;
+    text-shadow: #083b58;
+}
+.btn-banner {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #e68570; /* Color de fondo del botón */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-banner:hover {
+    background-color: rgba(
+        199,
+        85,
+        81,
+        0.384
+    ); /* Cambia el color de fondo al pasar el cursor sobre el botón */
+    color: #050505;
+}
+
+.dropdown-menu-personalizado {
+    background-color: #eb6040;
+}
+.dropdown-item-personalizado {
+    color: black;
+}
+#copy-right {
+    background-color: rgba(75, 72, 72, 0.2);
+    color: #083b58;
+}
+.text-copy {
+    color: #083b58;
+    text-decoration: none;
+}
+.bg-main {
+    width: 100%;
+    height: 150px;
+}
+
+#form-search {
+    margin-left: 15px;
+}
+
+/* Estilo imagen perfil usuario*/
+img .img-perfil {
+    width: 50px; /* Ancho de la imagen */
+    height: 50px; /* Alto de la imagen */
+    border-radius: 50%; /* Borde redondeado para crear un aspecto de foto de perfil circular */
+    border: 2px solid #fff; /* Borde blanco con 2 píxeles de ancho */
+    object-fit: cover; /* Escalado de la imagen para que cubra completamente el contenedor */
+}
+
+.fondo-formulario {
+    background-image: url("../image/bread.jpg");
+    background-size: cover; /* Cubre todo el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen en el contenedor */
+}
+/*Estilos crear recetas / ingredientes */
+#selectorIngredientes .checkbox {
+    padding: 5px;
+    border: 1px solid #537395;
+    margin-bottom: 10px;
+}
+#btnMostrarSeleccionados {
+    margin: 7px 0 7px 0;
+    padding: 6px 8px;
+}
+#btnMostrarIngredientes {
+    background-color: #f19494;
+    border: 1px solid #180e0e;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin: 7px 0 7px 0;
+}
+.ingrediente-checkbox {
+    margin-left: 25px;
+}
+
+/*Estilos crear recetas / pasos */
+
+.form-group {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/*recetas/index estilos para mostrar ls recetas*/
+.card-img-top {
+    width: 100%;
+    height: 200px; /* Ajusta la altura según tus necesidades */
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 1.25rem; /* Tamaño del título de la tarjeta */
+}
+
+.card-text {
+    flex-grow: 1; /* Asegura que el texto ocupe el espacio disponible */
+    font-size: 0.9rem;
+}
+/*Botones para compartir*/
+.compartir-popup {
+    position: absolute;
+    border: 1px solid #eb9090;
+    background-color: #c9d3d3fb;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(196, 50, 50, 0.2);
+}
+
+.compartir-popup a {
+    display: block;
+    margin-bottom: 10px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.compartir-popup a:hover {
+    text-decoration: none;
+    color: #171d1dfb;
+}
+
+/*Pagina buscar--enlaces blogs externos*/
+.external-articles ul {
+    list-style: none;
+    padding: 0;
+}
+
+.external-articles li {
+    margin-bottom: 15px;
+}
+
+.external-articles a {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.external-articles p {
+    margin-top: 5px;
+}

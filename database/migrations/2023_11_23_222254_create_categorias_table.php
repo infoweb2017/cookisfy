@@ -17,6 +17,15 @@ return new class extends Migration
             $table->text('descripción')->nullable();
             $table->timestamps();
         });
+        /**
+         * CREATE TABLE categorias (
+            * id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            * nombre VARCHAR(255) NOT NULL,
+            * descripción TEXT NULL,
+            * created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+            * updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        * );
+         */
     }
 
     /**

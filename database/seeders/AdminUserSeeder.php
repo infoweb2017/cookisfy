@@ -15,9 +15,9 @@ class AdminUserSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name' => 'Frank',            // Nombre del usuario administrador
-            'email' => 'admin@frankrm.com',    // Email del usuario administrador
-            'password' => Hash::make('1234567'),  
+            'name' => 'Cookisfy',            // Nombre del usuario administrador
+            'email' => 'cookisfy@gmail.com',    // Email del usuario administrador
+            'password' => Hash::make('Cookisfy_2024'),  
             'is_admin' => true,                // Establece el flag de administrador
             // 'profile_image_id' => 1,        // Si necesitas asignar una imagen de perfil
         ]);

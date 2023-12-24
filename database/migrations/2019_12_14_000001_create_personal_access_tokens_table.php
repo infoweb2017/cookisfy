@@ -21,6 +21,23 @@ return new class extends Migration
             $table->timestamp('expires_at')->nullable();
             $table->timestamps();
         });
+        /**
+         * CREATE TABLE personal_access_tokens (
+            *id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            *tokenable_id BIGINT UNSIGNED NOT NULL,
+            *tokenable_type VARCHAR(255) NOT NULL,
+            *name VARCHAR(255) NOT NULL,
+            *token VARCHAR(64) UNIQUE NOT NULL,
+            *abilities TEXT NULL,
+            *last_used_at TIMESTAMP NULL DEFAULT NULL,
+            *expires_at TIMESTAMP NULL DEFAULT NULL,
+            *created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+            *updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        *);
+
+*-- Índices para la relación polimórfica
+*CREATE INDEX idx_personal_access_tokens_tokenable_type_tokenable_id ON personal_access_tokens(tokenable_type, tokenable_id);
+         */
     }
 
     /**

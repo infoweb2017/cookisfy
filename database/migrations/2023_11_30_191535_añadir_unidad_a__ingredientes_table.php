@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::table('ingredientes', function (Blueprint $table) {
             $table->string('unidad'); // Agrega el campo "unidad" como una cadena de texto
         });
+        /**
+         * ALTER TABLE ingredientes ADD COLUMN unidad VARCHAR(255) NOT NULL;
+         */
     }
 
     /**

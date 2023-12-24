@@ -12,5 +12,11 @@ class Preparacion_paso extends Model
     /**
      * Conectamos a la bd traves de la variable $table  para asi poder manipular la informacion
      */
-    protected $table = 'preparacion_pasos'; 
+    protected $fillable = ['receta_id', 'pasos', 'solicitar'];
+
+    public function receta()
+    {
+        return $this->belongsTo(Receta::class);
+    }
+
 }

@@ -22,6 +22,20 @@ return new class extends Migration
             $table->foreign('receta_id')->references('id')->on('recetas')->onDelete('cascade');
             
         });
+        /**
+         * CREATE TABLE comentarios (
+            * id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            * user_id BIGINT UNSIGNED NOT NULL,
+            * receta_id BIGINT UNSIGNED NOT NULL,
+            * comentarios TEXT NOT NULL,
+            * created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+            * updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        * );
+
+        * -- Claves foráneas referenciando a 'users' y 'recetas'
+        * ALTER TABLE comentarios ADD CONSTRAINT fk_comentarios_user_id FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+        * ALTER TABLE comentarios ADD CONSTRAINT fk_comentarios_receta_id FOREIGN KEY (receta_id) REFERENCES recetas(id) ON DELETE CASCADE;
+         */
     }
 
     /**

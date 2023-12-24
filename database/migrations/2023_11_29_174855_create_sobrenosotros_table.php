@@ -15,6 +15,13 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
         });
+        /**
+         * CREATE TABLE sobrenosotros (
+            *id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            *created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+            *updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        *);
+         */
     }
 
     /**

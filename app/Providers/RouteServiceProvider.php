@@ -16,7 +16,8 @@ class RouteServiceProvider extends ServiceProvider
      * Normalmente, los usuarios son redirigidos aquí después de la autenticación..
      *
      */
-    public const HOME = '/home';
+    public const HOME = 'index';
+    public const ADMIN = 'admin/admin-dashboard';
 
     /**
      * Defines los enlaces del modelo de ruta, los filtros de patrones y otras configuraciones de ruta..
