@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\newUsuarioMail;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Notifications\NewUserRegistered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -16,23 +20,23 @@ class RegisterController extends Controller
     | Register Controller
     |--------------------------------------------------------------------------
     |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
+    | Este controlador gestiona el registro de nuevos usuarios así como su
+    | validación y creación. Por defecto este controlador utiliza un trait para
+    | proporcionar esta funcionalidad sin necesidad de código adicional.
     |
     */
 
     use RegistersUsers;
 
     /**
-     * Where to redirect users after registration.
+     * Dónde redirigir a los usuarios tras el registro.
      *
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
-     * Create a new controller instance.
+     * Crear una nueva instancia de controlador.
      *
      * @return void
      */
@@ -42,7 +46,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Obtener un validador para una solicitud de registro entrante. request.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
@@ -57,17 +61,34 @@ class RegisterController extends Controller
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     * Crear una nueva instancia de usuario tras un registro válido.
      *
      * @param  array  $data
      * @return \App\Models\User
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        return $user;
+    }
+    public function register(Request $request)
+    {
+        // Registra al usuario utilizando el método create del controlador
+        $user = $this->create($request->all());
+    
+        // Si el usuario se registró con éxito, envía la notificación al administrador
+        if ($user) {
+            $admin = User::where('is_admin', true)->first(); // Obtén al usuario administrador
+            if ($admin) {
+                $admin->notify(new NewUserRegistered($user)); // Envía la notificación al administrador
+                Mail::to($admin)->send(new NewUsuarioMail($user)); // Envía un correo al administrador
+            }
+        }
+    
+        return redirect($this->redirectTo); // Redirige al usuario después del registro
     }
 }

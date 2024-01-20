@@ -33,7 +33,7 @@ class ContactoNotification extends Notification
             ->line('Correo: ' . $contacto->correo)
             ->line('Teléfono: ' . $contacto->telefono)
             ->line('Consulta: ' . $contacto->consulta)
-            ->action('Ver Consulta', route('ver.consulta', $this->contacto->id))
+            ->action('Ver Consulta', route('consulta', $this->contacto->id))
             ->line('Gracias por usar nuestra aplicación!');
     }
 

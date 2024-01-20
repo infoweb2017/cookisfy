@@ -117,6 +117,11 @@ class IngredienteSeeder extends Seeder
             ['nombre' => 'Harina de trigo integral', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 7],
             ['nombre' => 'Amaranto', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 7],
             ['nombre' => 'Germen de trigo', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 7],
+            ['nombre' => 'Frijoles negros', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 7],
+            ['nombre' => 'Frijoles blancos', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 7],
+            ['nombre' => 'lentejas', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 7],
+            ['nombre' => 'Garbanzos', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 7],
+
 
             // ------------------ Frutos Secos y Semillas ---------------------------------------------
             ['nombre' => 'Almendras', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 8],
@@ -149,10 +154,14 @@ class IngredienteSeeder extends Seeder
 
             // ------------------ Especias y Hierbas ---------------------------------------------
             ['nombre' => 'Pimienta negra', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 10],
-            ['nombre' => 'Canela', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 10],
+            ['nombre' => 'Pimienta blanca', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 10],
+            ['nombre' => 'Pimienta roja', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 10],
+            ['nombre' => 'Canela polvo', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 10],
+            ['nombre' => 'Canela rama', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 10],
             ['nombre' => 'Nuez moscada', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 10],
             ['nombre' => 'Cúrcuma', 'cantidad_ingredientes' => '1',  'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 10],
-            ['nombre' => 'Pimentón', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 10],
+            ['nombre' => 'Pimentón picante', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 10],
+            ['nombre' => 'Pimentón dulce', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 10],
             ['nombre' => 'Comino', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 10],
             ['nombre' => 'Clavo de olor', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 10],
             ['nombre' => 'Albahaca', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 10],
@@ -176,6 +185,8 @@ class IngredienteSeeder extends Seeder
             ['nombre' => 'Cayena o chile en polvo', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 11],
             ['nombre' => 'Cilantro molido', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 11],
             ['nombre' => 'Curry en polvo', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 11],
+            ['nombre' => 'Azafrán', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 11],
+            ['nombre' => 'Tomate triturado', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'cucharaditas', 'categoria_id' => 11],
 
             // ------------------ Bebidas y líquidos ---------------------------------------------
             ['nombre' => 'Salsa picante (como el Tabasco)', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'ml', 'categoria_id' => 12],
@@ -194,7 +205,9 @@ class IngredienteSeeder extends Seeder
             ['nombre' => 'Brócoli', 'cantidad_ingredientes' => '1',  'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 13],
             ['nombre' => 'Cebollas', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 13],
             ['nombre' => 'Ajo', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 13],
-            ['nombre' => 'Pimientos', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 13],
+            ['nombre' => 'Pimiento rojo', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 13],
+            ['nombre' => 'Pimiento verde', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 13],
+            ['nombre' => 'Pimiento amarillo', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 13],
             ['nombre' => 'Calabacines', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 13],
             ['nombre' => 'Pepinos', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 13],
             ['nombre' => 'Champiñones', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 13],

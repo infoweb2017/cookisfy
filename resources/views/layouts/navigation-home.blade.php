@@ -12,12 +12,10 @@
     <!-- ... Otros encabezados ... -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="icon" href="{{ asset('build/assets/logo/logo_mini.ico') }}" type="image/icon" />
-
-    <!-- En mi archivo Blade css personalizado -->
+    <link rel="shortcut icon" href="{{ asset('images/logo/logo_mini.ico') }}" type="image/x-icon" />
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css','resources/css/_home.css'])
+    @vite(['resources/css/app.css', 'resources/css/_home.css'])
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -26,15 +24,15 @@
 <body>
     <div class="banner">
         <h1>Cookisfy</h1>
-        <p>Se tu propio cocinero.</p>
+        <p>Sé tu propio cocinero.</p>
         <a href="{{ route('saberMas') }}" class="btn-banner">Ver más...</a>
     </div>
     <!-- Barra de navegación -->
     <nav x-data="{ open: false }" class="navbar navbar-expand-lg navbar-collapse bg-danger-subtle">
         <div class="container">
             <!-- Logo o nombre del sitio -->
-            <a class="navbar-brand border-r" href="{{ route('inicio') }}">
-                <img class="rounded-circle" src="{{'resources/logo/logo_mini.png' }}" alt=""
+            <a class="navbar-brand border-r" href="">
+                <img class="rounded-circle" src="{{ asset('/images/logo/logo_mini.1.png') }}" alt=""
                     height="46">
             </a><!-- Fin Logo o nombre del sitio -->
 
@@ -48,10 +46,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('inicio') }}">Inicio</a>
+                        <a class="nav-link" href="welcome">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Galeria de recetas</a>
+                        <a class="nav-link" href="{{ route('fotos') }}">Galeria</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('sobrenosotros') }}">Quienes somos</a>

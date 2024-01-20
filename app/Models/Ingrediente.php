@@ -14,16 +14,23 @@ class Ingrediente extends Model
      */
     protected $table = 'ingredientes';
 
-    // Relación: Muchos ingredientes pueden estar en muchas recetas
+    protected $fillable = ['nombre', 'cantidad_ingredientes', 'opcional', 'unidad', 'categoria_id'];
+
+    // Relación: Muchos ingredientes pueden estar en muchas recetas(muchos a muchos)
     public function recetas()
     {
-        return $this->belongsToMany(Receta::class, 'ingredientes', 'ingrediente_id', 'receta_id')
-            ->withPivot(['cantidad_ingredientes', 'unidad']);
+        return $this->belongsToMany(Receta::class, 'receta_ingrediente', 'ingrediente_id', 'receta_id')
+            ->withPivot(['cantidad', 'unidad']);
+        //return $this->belongsToMany(Receta::class);
+
     }
 
     public function categorias()
     {
         // return $this->belongsToMany(Categoria::class, 'categoria_ingrediente');
         return $this->morphToMany(Categoria::class, 'categorias_relacionadas');
+    }
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }

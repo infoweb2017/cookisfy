@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container w-50">
-        <h1 class="mt-5 mb-5 text-center">Formulario de Contacto</h1>
+    <div class="container container-contacto w-50">
+        <h1 class="mt-4 mb-2 text-center display-5">Formulario de Contacto</h1>
         <form action="{{ route('contacto.store') }}" method="POST">
-            @csrf {{-- Agrega el token CSRF para proteger el formulario --}}
+            @csrf {{-- Agrego el token CSRF para proteger el formulario --}}
 
             {{-- Campo para el nombre --}}
             <div class="form-group">

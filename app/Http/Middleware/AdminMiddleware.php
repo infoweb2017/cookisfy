@@ -19,6 +19,6 @@ class AdminMiddleware
         return $next($request);
 
    // Si no es un administrador
-   return redirect('welcome')->with('error', 'Acceso no autorizado.');
+   return redirect('welcome')->with('error', 'Acceso no autorizado,no tienes permisos de administrador.');
     }
 }

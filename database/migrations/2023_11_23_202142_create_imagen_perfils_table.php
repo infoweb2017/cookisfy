@@ -32,9 +32,16 @@ return new class extends Migration
     remember_token VARCHAR(100) NULL,
     created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    imagen_perfil BIGINT UNSIGNED NULL
+    imagen_perfil VARCHAR(255) UNSIGNED NULL
 );
-
+ * CREATE TABLE imagen_perfils (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT UNSIGNED NOT NULL,
+    file_path VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT imagen_perfils_user_id_foreign FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+);
 -- Clave foránea referenciando a 'imagen_perfils'
 ALTER TABLE users ADD CONSTRAINT fk_users_imagen_perfil FOREIGN KEY (imagen_perfil) REFERENCES imagen_perfils(id) ON DELETE SET NULL;*/
     }

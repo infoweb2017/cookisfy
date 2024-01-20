@@ -1,13 +1,12 @@
-<!--- resources/views/sobrenosotros.blade.php --->
-
+<!-- sobre-nosotros.blade.php -->
 @extends('layouts.app')
 @section('content')
     <div class="container">
 
-        <h1 class="mt-4 mb-4 text-center">Quienes somos</h1>
+        <h1 class="mt-4 mb-4 text-center display-5">Quienes somos</h1>
         <div class="row">
             <div class="col-md-6">
-                <img src="{{ asset('build/assets/image/woman.jpg') }}" alt="Imagen de Sobre Nosotros" class="img-fluid">
+                <img src="{{ asset('images/imagenes/woman.jpg') }}" alt="Imagen de Sobre Nosotros" class="img-fluid">
             </div>
             <div class="col-md-6">
                 <p>Somos amantes de la cocina y la gastronomía. Nuestra pasión por

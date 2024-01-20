@@ -1,64 +1,27 @@
 @import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
 
-/* Color Theme Swatches in Hex */
-.Bootstrap-Pastel-Colors-1-hex {
-    color: #dff0d8;
-}
-.Bootstrap-Pastel-Colors-2-hex {
-    color: #d9edf7;
-}
-.Bootstrap-Pastel-Colors-3-hex {
-    color: #f5f5f5;
-}
-.Bootstrap-Pastel-Colors-4-hex {
-    color: #fcf8e3;
-}
-.Bootstrap-Pastel-Colors-5-hex {
-    color: #f2dede;
-}
-
-/* Color Theme Swatches in RGBA */
-.Bootstrap-Pastel-Colors-1-rgba {
-    color: rgba(223, 239, 216, 1);
-}
-.Bootstrap-Pastel-Colors-2-rgba {
-    color: rgba(216, 237, 246, 1);
-}
-.Bootstrap-Pastel-Colors-3-rgba {
-    color: rgba(244, 244, 244, 1);
-}
-.Bootstrap-Pastel-Colors-4-rgba {
-    color: rgba(251, 247, 226, 1);
-}
-.Bootstrap-Pastel-Colors-5-rgba {
-    color: rgba(242, 221, 221, 1);
-}
-
-/* Color Theme Swatches in HSLA */
-.Bootstrap-Pastel-Colors-1-hsla {
-    color: hsla(102, 44, 89, 1);
-}
-.Bootstrap-Pastel-Colors-2-hsla {
-    color: hsla(199, 65, 90, 1);
-}
-.Bootstrap-Pastel-Colors-3-hsla {
-    color: hsla(0, 0, 96, 1);
-}
-.Bootstrap-Pastel-Colors-4-hsla {
-    color: hsla(50, 80, 93, 1);
-}
-.Bootstrap-Pastel-Colors-5-hsla {
-    color: hsla(0, 43, 90, 1);
-}
-
+/*Estilos del slider*/
 #receta-slider {
-    height: 400px;
+    width: 100%;
+    max-height: 400px; /* Cambiado de "height" a "max-height" */
+    overflow: hidden; /* Agregado para ocultar contenido que exceda la altura máxima */
 }
+
 .carousel-inner {
-    height: 400px;
+    width: 100%;
 }
-/* Archivo public/css/custom.css o tu ubicación personalizada */
+
+#receta-slider .carousel-item {
+    transition: transform 2s ease, opacity 0.5s ease-out;
+    box-shadow: 0 4px 10px rgba(3, 3, 3, 0.25);
+    text-align: center; /* Alineación del contenido en el centro */
+}
+
+#receta-slider .carousel-item img {
+    max-height: 400px; /* Cambiado de "height" a "max-height" */
+    object-fit: cover; /* Agregado para ajustar la imagen dentro del contenedor */
+}
 
 /* Cambiar el color de fondo del formulario */
 .form-control {
@@ -69,16 +32,28 @@
 .form-control,
 .btn {
     color: #083b58;
+    border-radius: 5px;
+}
+.bt-edit {
+    background-color: #f9a59a;
+    border-color: #b4646c;
+    margin-left: 0px;
+    margin-right: 10px;
+    color: #083b58;
+    border-radius: 5px;
+    text-decoration: none;
+    width: 70px;
 }
 
 /* Cambiar el color de fondo del botón */
 .btn-primary {
-    background-color: #c2858b;
+    background-color: #f9a59a;
     border-color: #b4646c;
     margin-left: 5px;
+    color: #083b58;
 }
 .btn-primary-recetas {
-    background-color: #c2858b;
+    background-color: rgb(194, 133, 139);
     border-color: #382727;
     margin-left: 30%;
     width: 40%;
@@ -94,7 +69,17 @@
     background-color: #53739c;
     border-color: #426272;
 }
-
+.btn-card-enlaces {
+    color: rgb(8, 59, 88);
+    background-color: rgb(103, 212, 206);
+    border-color: #050505;
+    width: 50%;
+}
+.btn-card-enlaces:hover {
+    color: #050505;
+    background-color: #f2dede;
+    border-color: #050505;
+}
 /* Cambiar el color del enlace de registro */
 .register-link {
     color: #7fa8d4;
@@ -117,6 +102,7 @@
 .nav-buscar {
     margin-left: 30vw;
 }
+/*Estilos al banner*/
 .banner {
     height: 33px;
     width: 100%;
@@ -156,7 +142,155 @@
     ); /* Cambia el color de fondo al pasar el cursor sobre el botón */
     color: #050505;
 }
+.container-banner {
+    background-color: #fff; /* Color de fondo */
+    padding: 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    max-width: 800px; /* Controla el ancho máximo del contenedor */
+    margin: auto; /* Centra el contenedor */
+}
 
+.h-banner {
+    color: #95b8f6; /* Color de los títulos */
+    margin-top: 20px;
+}
+
+.p-banner {
+    color: #083b58; /* Color del texto */
+    line-height: 1.6; /* Espaciado de línea */
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+}
+img {
+    background-size: cover; /* Asegurar que la imagen cubra completamente el área */
+    background-position: center; /* Centrar la imagen de fondo */
+    background-repeat: no-repeat;
+}
+/*Estilo navigation-user*/
+.btn-dropdownMenu {
+    background-color: #84ebb1;
+    color: #083b58;
+    border: 1px solid #bbbaba;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s; /* Transición suave para el hover */
+}
+.btn-dropdownMenu:hover {
+    background-color: #efc5c5; /* Cambio de color al pasar el ratón */
+}
+.dropMenuBtn {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera para profundidad */
+}
+.dropMenuBtn a {
+    color: #333;
+    padding: 10px 15px;
+    text-decoration: none; /* Sin subrayado en los enlaces */
+}
+.dropMenuBtn a:hover {
+    background-color: #f2f2f2;
+}
+.dropdown-item-menu {
+    display: block;
+    margin: 2px 0;
+}
+
+/*Estilos politica*/
+.container-politica-cookie,
+.container-privacidad {
+    background-color: #fff; /* Color de fondo */
+    padding: 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    max-width: 800px; /* Controla el ancho máximo del contenedor */
+    margin: auto; /* Centra el contenedor */
+}
+.h-politica,
+.h-politica-p {
+    color: #1d8254; /* Color de los títulos */
+    margin-top: 20px;
+}
+.p-politica,
+.p-politica-p {
+    line-height: 1.5; /* Espaciado de línea */
+    text-align: justify;
+}
+.p-politica a,
+.p-politica-p a {
+    text-decoration: none;
+}
+/*Estilos Faq*/
+.faq-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: auto;
+}
+.faq {
+    color: #49bb88; /* Color de los títulos */
+    margin-top: 20px;
+}
+.faq p {
+    color: #050505;
+}
+.h3-faq {
+    color: #51a0fbee;
+}
+/*Estilos pagina contacto-form*/
+.container-contacto {
+    background-color: #fff; /* Color de fondo */
+    padding: 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 2px 2px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    max-width: 800px; /* Controla el ancho máximo del contenedor */
+    margin-top: 2rem;
+}
+.container-confirmacion {
+    background-color: #fff; /* Fondo blanco para la ventana */
+    padding: 30px;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para dar sensación de profundidad */
+    max-width: 600px; /* Controla el ancho máximo del contenedor */
+    margin: 0 auto; /* Centra el contenedor */
+}
+
+.container-confirmacion h1 {
+    color: #007bff; /* Color del título */
+}
+
+.container-confirmacion p {
+    color: #333; /* Color del texto */
+    line-height: 1.6; /* Espaciado de línea */
+}
+/*Consulta envió form view(consulta.ver)*/
+.container-consulta {
+    max-width: 700px; /*Ancho máximo contenedor*/
+}
+.tarjeta-consulta {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para la tarjeta */
+    border-radius: 10px; /* Bordes redondeados */
+}
+.tarjeta-cuerpo {
+    padding: 20px;
+}
+.tarjeta-texto {
+    font-size: 1.1rem; /* Tamaño de letra más grande para mejorar la legibilidad */
+    margin-bottom: 10px; /* Espaciado entre párrafos */
+}
+.tarjeta-texto strong {
+    color: #007bff;
+}
+
+/*---------------------------*/
 .dropdown-menu-personalizado {
     background-color: #eb6040;
 }
@@ -217,7 +351,6 @@ img .img-perfil {
 }
 
 /*Estilos crear recetas / pasos */
-
 .form-group {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -226,7 +359,7 @@ img .img-perfil {
 /*recetas/index estilos para mostrar ls recetas*/
 .card-img-top {
     width: 100%;
-    height: 200px; /* Ajusta la altura según tus necesidades */
+    height: 200px; /* Ajusta la altura*/
     object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
 }
 
@@ -256,13 +389,20 @@ img .img-perfil {
 .compartir-popup a {
     display: block;
     margin-bottom: 10px;
-    color: inherit;
+    color: #083b58;
     text-decoration: none;
+    text-align: center;
 }
 
 .compartir-popup a:hover {
     text-decoration: none;
-    color: #171d1dfb;
+    color: #8ba0a0fb;
+}
+#btnCompartir {
+    border: 1px solid #4ac981ef;
+    background-color: #bef0f0fb;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 /*Pagina buscar--enlaces blogs externos*/
@@ -282,4 +422,199 @@ img .img-perfil {
 
 .external-articles p {
     margin-top: 5px;
+}
+
+/*Galeria de recetas-usuario ver todas */
+.card-personalizada {
+    height: 300px; /* Altura fija */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 10px 0 10px 0;
+}
+
+.card-body {
+    overflow: hidden; /* Para prevenir desbordamiento de texto */
+}
+
+.card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Número de líneas de texto a mostrar */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: justify;
+}
+
+/*Boletín suscripción*/
+.newsletter-subscribe {
+    background-color: #f9d99a;
+}
+
+/*Cookies*/
+#cookieContainer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #eddede;
+    padding: 10px;
+    text-align: center;
+}
+#cookieContainer a {
+    text-decoration: none;
+}
+#aceptarCookies {
+    border-radius: 6px;
+}
+#aceptarCookies:hover {
+    background-color: #549dbe;
+    color: #fff;
+}
+#cancelarCookies {
+    border-radius: 6px;
+}
+#cancelarCookies:hover {
+    background-color: #f19494;
+    color: #fff;
+}
+
+/*Footer*/
+.nav-item a {
+    text-decoration: none;
+}
+
+/*Estilos pagina welcome video*/
+.video-container {
+    margin-left: 30%;
+    margin-top: 25px;
+}
+.embed-responsive-item {
+    width: 60%;
+    height: 20em;
+}
+@media (max-width: 768px) {
+    .video-container {
+        width: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+    }
+}
+
+/*Mostrar las recetas*/
+.descripcion-corta {
+    text-align: justify;
+    min-height: 3.6em; /* Aproximadamente 2 líneas de texto */
+    line-height: 1.8em;
+}
+
+/*Galeria_img_platos*/
+/* Estilo para la imagen con zoom */
+.card-img-top.zoomable {
+    transition: transform 0.3s;
+}
+
+/* Efecto de zoom al pasar el cursor */
+.card-img-top.zoomable:hover {
+    transform: scale(1.1); /* Cambia el valor para ajustar el nivel de zoom */
+}
+
+.parrafo-art {
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+/*Hacer zoom efecto lupa (receta.receta)*/
+.img-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.img-container img {
+    transition: transform 0.5s ease;
+}
+
+.img-container:hover img {
+    transform: scale(1.5);
+}
+/*carrusel inferior(receta.receta)*/
+.custom-carousel-container {
+    margin-left: 25em;
+    width: 35em;
+    background-color: #a9c1d9; /* Un color de fondo suave */
+    padding: 15px;
+    margin-top: 70px;
+    border-radius: 5px; /* Bordes redondeados para un aspecto más suave */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Una sombra ligera para profundidad */
+}
+.centrar-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
+
+/*BUscador de recetas*/
+.buscar:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/*Estilos index*/
+.tarjeta-testimonio,
+.ofertas {
+    box-shadow: 0 4px 8px rgba(210, 140, 140, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+.tarjeta-testimonio:hover,
+.ofertas:hover {
+    transform: scale(1.02);
+}
+.evento-card {
+    width: 25rem;
+}
+.evento-card {
+    box-shadow: 0 4 9 px 9px rgba(210, 140, 140, 0.1);
+    margin-bottom: 20px;
+}
+
+.texto-testimonio {
+    font-style: italic;
+    color: #555;
+}
+.tarjeta-testimonio {
+    margin: auto;
+    max-width: 500px; /* Ajusta el ancho máximo */
+}
+
+.texto-testimonio {
+    font-style: italic;
+    color: #555;
+}
+
+.ofertas img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.resultados-busqueda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Ajusta el espacio entre los elementos */
+}
+
+.ingrediente-item {
+    flex: 1 0 22%;
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+.boton-eliminar {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-left: 2px;
+    width: 70px;
 }

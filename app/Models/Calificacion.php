@@ -12,8 +12,7 @@ class Calificacion extends Model
     /**
      * Conectamos a la bd traves de la variable $table  para asi poder manipular la informacion
      */
-
-    protected $table = ['receta_id','user_id','valoración','reseña'];
+    protected $table = ['receta_id','user_id','valoración','resena'];
 
     //Una reseña pertenece a una receta
     public function recetas(){

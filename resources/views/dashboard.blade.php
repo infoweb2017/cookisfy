@@ -1,4 +1,5 @@
-@extends('layouts.app') <!-- Asegúrate de que 'layouts.app' sea tu plantilla principal en Blade -->
+<!-- dashboard.blade.php -->
+@extends('layouts.app') 
 
 @section('content')
     <!-- Encabezado de la página -->

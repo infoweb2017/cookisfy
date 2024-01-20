@@ -15,7 +15,9 @@ return new class extends Migration
             $table->text('notificacion')->nullable();
         });
     }
-
+/**
+ * ALTER TABLE contactos ADD COLUMN notificacion TEXT NULL;
+ */
     /**
      * Reverse the migrations.
      */

@@ -13,4 +13,8 @@ class Imagen_perfil extends Model
      * Conectamos a la bd traves de la variable $table  para asi poder manipular la informacion
      */
     protected $table = 'imagen_perfils'; 
+
+    public function imageable(){
+        return $this->morphTo();
+    }
 }

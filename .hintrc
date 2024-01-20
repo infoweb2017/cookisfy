@@ -10,9 +10,23 @@
           "-webkit-tap-highlight-color",
           "-webkit-text-size-adjust",
           "text-align: -webkit-match-parent",
-          "text-decoration-skip-ink"
+          "text-decoration-skip-ink",
+          "user-select"
         ]
       }
     ]
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not and_chr <= 116",
+    "not and_ff <= 116",
+    "not chrome <= 116",
+    "not edge <= 116",
+    "not firefox <= 117",
+    "not ios_saf <= 16.6",
+    "not opera <= 102",
+    "not safari <= 16.6",
+    "not samsung <= 21"
+  ]
 }

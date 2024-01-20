@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\imagen_perfil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ImagenPerfilController extends Controller
 {
@@ -28,7 +29,31 @@ class ImagenPerfilController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = auth()->user();
+
+        // Validación del archivo de imagen
+        $request->validate([
+            'imagen_perfil' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Permite imágenes JPEG, PNG, JPG y GIF de hasta 2MB
+        ]);
+
+        // Procesar la imagen y guardarla en el sistema de archivos
+        if ($request->hasFile('imagen_perfil')) {
+            // Eliminar la foto de perfil anterior si existe
+            if ($user->imagen_perfil) {
+                Storage::delete($user->imagen_perfils);
+            }
+
+            // Almacenar la nueva foto de perfil en el sistema de archivos
+            $rutaFoto = $request->file('imagen_perfil')->store('images/img_usuario');
+
+            // Actualizar el campo 'foto_perfil' en la base de datos
+            $user->update([
+                'imagen_perfil' => $rutaFoto,
+            ]);
+        }
+
+        // Redirigir de vuelta con un mensaje de éxito
+        return redirect()->back()->with('success', 'Foto de perfil actualizada correctamente');
     }
 
     /**

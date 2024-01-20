@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-
 /**Boton ocultar redes sociales en recetas */
 document.addEventListener('DOMContentLoaded', function () {
     let btnCompartir = document.getElementById('btnCompartir');
@@ -27,13 +26,33 @@ document.addEventListener('DOMContentLoaded', function () {
         opcionesCompartir.style.display = opcionesCompartir.style.display === 'none' ? 'block' : 'none';
     });
 
-    // Opcional: Ocultar la ventana emergente al hacer clic fuera de ella
+    //Ocultar la ventana emergente al hacer clic fuera de ella
     window.addEventListener('click', function (e) {
         if (!btnCompartir.contains(e.target) && !opcionesCompartir.contains(e.target)) {
             opcionesCompartir.style.display = 'none';
         }
     });
 });
+
+
+/*galeria_img_platos*/
+// Obtiene todas las imágenes con la clase card-img-top
+var imagenes = document.querySelectorAll('.card-img-top');
+
+// Agrega la clase zoomable a todas las imágenes
+imagenes.forEach(function(imagen) {
+    imagen.classList.add('zoomable');
+});
+
+/*Hacer zoom efecto lupa*/
+$('.img-container').hover(
+    function() {
+        $(this).find('img').css('transform', 'scale(1.2)');
+    }, 
+    function() {
+        $(this).find('img').css('transform', 'scale(1)');
+    }
+);
 
 
 

@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('calificacions', function (Blueprint $table) {
-            $table->id();$table->unsignedBigInteger('receta_id');
+            $table->id();
+            $table->unsignedBigInteger('receta_id');
             $table->unsignedBigInteger('user_id');
             $table->tinyInteger('valoracion'); // Puede ser de 1 a 5
             $table->text('resena')->nullable(); // Opcional, si quiero permitir que los usuarios dejen un comentario con su calificación

@@ -19,7 +19,7 @@ class AdminUserSeeder extends Seeder
             'email' => 'cookisfy@gmail.com',    // Email del usuario administrador
             'password' => Hash::make('Cookisfy_2024'),  
             'is_admin' => true,                // Establece el flag de administrador
-            // 'profile_image_id' => 1,        // Si necesitas asignar una imagen de perfil
+            //'profile_image_id' => 1,        // Si necesitas asignar una imagen de perfil
         ]);
     }
 }

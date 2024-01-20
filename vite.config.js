@@ -6,11 +6,11 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/app.css',
-                'resources/css/_home.css',
+                'resources/css/admin.css',
                 'resources/sass/app.scss',
                 'resources/js/app.js',
                 'resources/js/ingredientes.js',
-                'resources/js/_home.js',
+                'resources/js/aceptar-cookies.js',
             ],
             refresh: true,
         }),

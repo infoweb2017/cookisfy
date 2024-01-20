@@ -8,6 +8,7 @@ class InicioController extends Controller
 {
     public function inicio()
     {
+        //return view('welcome',['recetas' => []]);
         return view('welcome');
     }
 }

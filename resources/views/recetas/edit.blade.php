@@ -2,53 +2,23 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mt-4 mb-4">Editar Receta: {{ $receta->titulo }}</h1>
+        <h1 class="mt-4 mb-4">Editar: {{ $receta->titulo }}</h1>
         <form action="{{ route('recetas.update', $receta->id) }}" method="POST">
             @csrf <!---Agrega el token CSRF para proteger el formulario--->
             @method('PUT') <!---Utiliza el método HTTP PUT para actualizar--->
 
-            <!---Campo para el título de la receta--->
+            <!---Campo para el título --->
             <div class="form-group">
                 <label for="titulo">Título:</label>
                 <input type="text" id="titulo" name="titulo" class="form-control"
                     value="{{ old('titulo', $receta->titulo) }}" required>
             </div>
 
-            <!---Campo para los ingredientes --->
+            <!---Campo para la descripcion--->
             <div class="form-group">
-                <label for="ingredientes">Ingredientes:</label>
-                <textarea id="ingredientes" name="ingredientes" class="form-control" required>{{ old('ingredientes', $receta->ingredientes) }}</textarea>
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" class="form-control">{{ old('descripcion', $receta->descripcion) }}</textarea>
             </div>
-
-            <!---Campo para las instrucciones --->
-            <div class="form-group">
-                <label for="instrucciones">Instrucciones:</label>
-                <textarea id="instrucciones" name="instrucciones" class="form-control" required>{{ old('instrucciones', $receta->instrucciones) }}</textarea>
-            </div>
-
-            <!---Campo para la categoría --->
-            <div class="form-group">
-                <label for="categoria_id">Categoría:</label>
-                <select id="categoria_id" name="categoria_id" class="form-control" required>
-                    {{-- Loop para mostrar las categorías disponibles --}}
-                    @foreach ($categorias as $categoria)
-                        <option value="{{ $categoria->id }}" @if (old('categoria_id', $receta->categoria_id) == $categoria->id) selected @endif>
-                            {{ $categoria->nombre }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <!---Campo para los pasos --->
-            <div class="form-group" id="pasos-container">
-                <label for="pasos">Pasos de Preparación:</label>
-                @foreach ($receta->pasosRecetas as $paso)
-                    <div class="paso">
-                        <textarea name="pasos[{{ $paso->solicitar }}]" class="form-control" placeholder="Paso {{ $paso->solicitar }}">{{ old('pasos.' . $paso->solicitar, $paso->pasos) }}</textarea>
-                    </div>
-                @endforeach
-            </div>
-            <!---Botón para añadir más pasos --->
-            <button type="button"  id="btn-agregar-paso" class="btn btn-secondary">Añadir otro paso</button>
 
             <!---Campo para el tiempo de preparación  --->
             <div class="form-group">

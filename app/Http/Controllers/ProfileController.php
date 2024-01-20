@@ -7,6 +7,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -16,9 +18,14 @@ class ProfileController extends Controller
      */
     public function editar(Request $request): View
     {
-        return view('perfil.editar', [
-            'user' => $request->user(),
-        ]);
+        $user = $request->user();
+
+        // Verifica si el usuario es administrador
+        if ($user->isAdmin()) {
+            return view('admin.perfil.editar', ['user' => $user]);
+        } else {
+            return view('perfil.editar', ['user' => $user]);
+        }
     }
 
     /**
@@ -26,35 +33,49 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request,): RedirectResponse
     {
-        // Obtener el usuario actual
-        $user = $request->user();
+        return DB::transaction(function () use ($request) {
+            // Obtener el usuario actual
+            $user = $request->user();
 
-        // Validar los datos del formulario usando el Request validado
-        $validatedData = $request->validated();
+            // Validar los datos del formulario usando el Request validado
+            $validatedData = $request->validated();
 
-        // Comprobar si el campo de correo electrónico ha cambiado
-        if ($user->isDirty('email')) {
-            // Si ha cambiado, establecer 'email_verified_at' en null para requerir verificación
-            $user->email_verified_at = null;
-        }
+            // Comprobar si el campo de correo electrónico ha cambiado
+            if ($user->isDirty('email')) {
+                // Si ha cambiado, establecer 'email_verified_at' en null para requerir verificación
+                $user->email_verified_at = null;
+                //$user->sendEmailVerificationNotification();
 
-        // Actualizar otros campos del perfil con los datos validados
-        $user->fill($validatedData);
+            }
 
-        // Manejar la carga de la foto de perfil si está presente en la solicitud
-        if ($request->hasFile('imagen_perfil')) {
-            // Si se proporciona una nueva imagen, almacenarla y actualizar la columna 'profile_photo'
-            $profilePhoto = $request->file('imagen_perfil');
-            $profilePhotoPath = $profilePhoto->store('assets/img_usuario', 'public'); // Almacenar la imagen en el sistema de archivos 'public'
+            // Actualizar otros campos del perfil con los datos validados
+            $user->fill($validatedData);
 
-            // Actualizar el campo de la foto de perfil en la base de datos
-            $user->imagen_perfil = $profilePhotoPath;
+            // Manejar la carga de la foto de perfil si está presente en la solicitud
+            if ($request->hasFile('imagen_perfil')) {
+                if ($user->imagen_perfil != null) {
+                    Storage::disk('images')->delete($user->imagen_perfils);
+                    $user->image->delete();
+                }
 
-            // Guardar los cambios en el usuario
-            $user->save();
-        }
-        return Redirect::route('perfil.editar')->with('status', 'profile-updated');
+                /*$user->image() -> create([
+                    'imagen_perfils' => $request->store('profile-photo', 'images'),
+                ]);*/
+                // Si se proporciona una nueva imagen, almacenarla y actualizar la columna 'profile_photo'
+                $profilePhoto = $request->file('imagen_perfil');
+                $profilePhotoPath = $profilePhoto->store('images/img_usuario', 'public'); // Almacenar la imagen en el sistema de archivos 'public'
+
+                // Actualizar el campo de la foto de perfil en la base de datos
+                $user->imagen_perfil = $profilePhotoPath;
+
+                // Guardar los cambios en el usuario
+                $user->save();
+            }
+            return Redirect::route('perfil.editar')->with('status', 'profile-updated');
+        }, 5);
     }
+
+
 
     /**
      * Eliminar la cuenta del usuario.

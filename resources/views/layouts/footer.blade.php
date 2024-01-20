@@ -18,7 +18,6 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
 </head>
 
 <body>
@@ -48,13 +47,10 @@
                     <!-- Linkedin -->
                     <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;" href="#!"
                         role="button"><i class="fab fa-linkedin-in"></i></a>
-                </section>
-                <!-- Section: Social media -->
+                </section><!-- Section: Social media -->
             </div>
-            <!-- Grid container -->
-
             <!-- Contacto -->
-            <section class="mb-4">
+            <section class="mb-2">
                 <ul class="navbar-nav ml-auto text-center">
                     <li class="nav-item m-1">
                         <h4>Contacto</h4></i>
@@ -63,32 +59,41 @@
                         <p><b>Teléfono: </b>(+34) 963 102 986</p>
                     </li>
                     <li class="nav-item">
-                        <p><b>Email: </b>info@cookisfy.es</p></i>
+                        <p><b>Email: </b><a href="mailto:cookisfy@gmail.com">cookisfy@gmail.com</a></p>
                     </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand border-r" href="{{ route('page_welcome') }}">
+                            <img class="rounded-circle" src="{{ asset('/images/logo/logo_mini.1.png') }}" alt=""
+                                height="76">
+                        </a>
+                    </li> <!-- Fin Logo -->
                 </ul>
             </section>
             <!-- Enlaces -->
             <div class="text-center p- text-bg-nav-link">
                 <ul class="list-unstyled">
                     <li class="d-inline-block mr-4">
-                        <a class="nav-link" href="{{ route('sobrenosotros') }}">Sobre Nosotros |</a>
+                        <a class="nav-link" href="{{ route('sobrenosotros') }}" target="_blank">Sobre Nosotros |</a>
                     </li>
-                    <li class="d-inline-block mr-4"><a class="nav-link" href="{{ route('cookies') }}">Política de
+                    <li class="d-inline-block mr-4"><a class="nav-link" href="{{ route('cookies') }}"
+                            target="_blank">Política de
                             Cookies |</a></li>
-                    <li class="d-lg-inline-block"><a class="nav-link" href="{{ route('privacidad') }}">Política de
-                            Privacidad</a></li>
+                    <li class="d-lg-inline-block"><a class="nav-link" href="{{ route('privacidad') }}"
+                            target="_blank">Política de
+                            Privacidad |</a></li>
+                    <li class="d-lg-inline-block">
+                        <a class="nav-link" href="{{ route('faq') }}" target="_blank">Preguntas Frecuentes</a>
+                    </li>
                 </ul>
-            </div>
+            </div><!-- FIN Enlaces -->
 
             <!-- Copyright -->
             <div class="text-center p-4" id="copy-right">
                 © 2023 Copyright:
-                <a class="text-copy" href="{{ route('inicio') }}">Cookisfy</a>
-            </div>
-            <!-- Copyright -->
+                <a class="text-copy" href="welcome">Cookisfy</a>
+            </div><!-- FIN Copyright -->
         </footer>
-    </div>
-    <!-- Fin Footer -->
+    </div> <!-- Fin Footer -->
 
 </body>
 

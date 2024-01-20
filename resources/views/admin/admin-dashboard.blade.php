@@ -1,73 +1,203 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.admin')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('content')
+    <div class="container">
+        <h1 class="text-center mt-4 text-bg-info">Panel Administración</h1>
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+        <h3 class="text-center mt-4">Resumen de Estadísticas</h3>
+        <div class="row">{{-- Resumen --}}
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-body bg-body-secondary">
+                        <h5 class="card-title">Usuarios Registrados</h5>
+                        <p class="card-text">
+                            Cantidad: {{ $totalUsuarios }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body bg-body-secondary">
+                        <h5 class="card-title">Recetas Publicadas</h5>
+                        <p class="card-text">
+                            Cantidad: {{ $totalRecetas }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body bg-body-secondary">
+                        <h5 class="card-title">Comentarios Realizados</h5>
+                        <p class="card-text">
+                            Cantidad: {{ $totalComentarios }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-body bg-body-secondary">
+                        <h5 class="card-title">Articulos Realizados</h5>
+                        <p class="card-text">
+                            Cantidad: {{ $totalArticulos }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body bg-body-secondary">
+                        <h5 class="card-title">Ofertas Realizados</h5>
+                        <p class="card-text">
+                            Cantidad: {{ $totalOfertas }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body bg-body-secondary">
+                        <h5 class="card-title">Eventos Realizados</h5>
+                        <p class="card-text">
+                            Cantidad: {{ $totalEventos }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body bg-body-secondary">
+                        <h5 class="card-title">Categorias</h5>
+                        <p class="card-text">
+                            Cantidad: {{ $totalCategoria }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body bg-body-secondary">
+                        <h5 class="card-title">Ingredientes</h5>
+                        <p class="card-text">
+                            Cantidad: {{ $totalIngrediente }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>{{-- Fin Resumen --}}
 
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+        {{-- Enlaces directos --}}
+        <div class="row mt-5">
+            <h3 class="text-center">Enlaces directos</h3>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body bg-body-tertiary">
+                        <h5 class="card-title">Usuarios</h5>
+                        <p class="card-text">Administrar usuarios registrados.</p>
+                        <a href="{{ route('admin.usuarios') }}" class="btn btn-primary">Gestionar</a>
+                    </div>
+                </div>
+            </div>
 
-    <title>{{ config('app.name', 'Cookisfy') }}</title>
-</head>
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-body bg-body-tertiary">
+                        <h5 class="card-title">Recetas</h5>
+                        <p class="card-text">Administrar recetas publicadas.</p>
+                        <a href="{{ route('admin.recetas') }}" class="btn btn-primary">Gestionar Recetas</a>
+                    </div>
+                </div>
+            </div>
 
-<body>
-    @include('layouts.navigation-admin')
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body bg-body-tertiary">
+                        <h5 class="card-title">Categorías</h5>
+                        <p class="card-text">Administrar categorías de recetas.</p>
+                        <a href="{{ route('admin.categorias') }}" class="btn btn-primary">Gestionar Categorías</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body bg-body-tertiary">
+                        <h5 class="card-title">Ingredientes</h5>
+                        <p class="card-text">Administrar ingredientes de recetas.</p>
+                        <a href="{{ route('admin.ingredientes') }}" class="btn btn-primary">Gestionar Ingredientes</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body bg-body-tertiary">
+                        <h5 class="card-title">Ofertas</h5>
+                        <p class="card-text">Administrar Ofertas.</p>
+                        <a href="{{ route('admin.ofertas') }}" class="btn btn-primary">Gestionar Ofertas</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body bg-body-tertiary">
+                        <h5 class="card-title">Eventos</h5>
+                        <p class="card-text">Administrar Eventos.</p>
+                        <a href="{{ route('admin.eventos') }}" class="btn btn-primary">Gestionar Eventos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body bg-body-tertiary">
+                        <h5 class="card-title">Articulos</h5>
+                        <p class="card-text">Administrar Articulos.</p>
+                        <a href="{{ route('admin.articulos') }}" class="btn btn-primary">Gestionar Articulos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body bg-body-tertiary">
+                        <h5 class="card-title">Comentarios</h5>
+                        <p class="card-text">Administrar Comentarios.</p>
+                        <a href="{{ route('admin.usuarios') }}" class="btn btn-primary">Gestionar Comentarios</a>
+                    </div>
+                </div>
+            </div>
+        </div>{{-- Fin Enlaces directos --}}
 
-    <main class="principal">
-
-        <div class="container-fluid max-w-7xl mx-auto p-6 lg:p-8 ">
-            <div class="flex justify-center">
-                <h1>Aqui irá toda la administracion de la web</h1>
+        <!-- Gráfico de barras para mostrar recetas por mes -->        
+        <div class="card mt-4">
+            <div class="card-body">
+                <h3>Recetas por Mes</h3>
+                <canvas id="recetasPorMes"></canvas>
             </div>
         </div>
-    </main>
+    </div>
 
-    <!-- Inicio Footer-->
-    <div class="bg-main my-5">
-        <footer class=" container-fluid  bg-emerald-600 text-center text-white">
-            <!-- Grid container -->
-            <div class="container p-4 pb-0">
-                <!-- Section: Social media -->
-                <section class="mb-4">
-                    <!-- Facebook -->
-                    <a class="btn btn-primary btn-floating m-1" style="background-color: #677caa;" href="#!"
-                        role="button"><i class="fab fa-facebook-f"></i></a>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script>
+        // Datos para el gráfico de recetas por mes (debes proporcionar estos datos)
+        let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
+        let recetasPorMesData = [1, 4, 1, 15, 13, 3, 2, 5, 2, 15, 10, 5, 6, 6];
 
-                    <!-- Twitter -->
-                    <a class="btn btn-primary btn-floating m-1" style="background-color: #55a2dd;" href="#!"
-                        role="button"><i class="fab fa-twitter"></i></a>
-
-                    <!-- Google -->
-                    <a class="btn btn-primary btn-floating m-1" style="background-color: #b85447;" href="#!"
-                        role="button"><i class="fab fa-google"></i></a>
-
-                    <!-- Instagram -->
-                    <a class="btn btn-primary btn-floating m-1" style="background-color: #664166;" href="#!"
-                        role="button"><i class="fab fa-instagram"></i></a>
-
-                    <!-- Linkedin -->
-                    <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;" href="#!"
-                        role="button"><i class="fab fa-linkedin-in"></i></a>
-                </section>
-                <!-- Section: Social media -->
-            </div>
-            <!-- Grid container -->
-
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(75, 72, 72, 0.2);">
-                © 2020 Copyright:
-                <a class="text-white" href="#">Cookisfy</a>
-            </div>
-            <!-- Copyright -->
-        </footer>
-    </div><!-- Fin Footer-->
-</body>
-
-</html>
+        // Configuración del gráfico
+        const ctx = document.getElementById('recetasPorMes').getContext('2d');
+        let recetasPorMes = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: meses,
+                datasets: [{
+                    label: 'Recetas por Mes',
+                    data: recetasPorMesData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+@endsection

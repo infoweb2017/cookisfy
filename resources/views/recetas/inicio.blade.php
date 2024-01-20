@@ -13,7 +13,7 @@
                             @endif
                             <div class="card-body">
                                 <h5 class="card-title">{{ $receta->titulo }}</h5>
-                                <p class="card-text">{{ Str::limit($receta->descripcion, 100) }}</p>
+                                <p class="card-text">{{ Str::limit($receta->descripcion, 250) }}</p>
 
                                 {{-- Mostrar los primeros pasos de la receta --}}
                                 @if ($receta->pasos)
@@ -24,7 +24,15 @@
                                     </ul>
                                 @endif
 
-                                <a href="{{ route('recetas.show', $receta->id) }}" class="btn btn-primary-recetas">Ver más</a>
+                                {{-- Mostrar los comentarios --}}
+                                <div class="comentarios">
+                                    <h5>Comentarios</h5>
+                                    @foreach ($receta->comentarios as $comentario)
+                                        <p>{{ $comentario->user->name }}: {{ $comentario->descripcion }}</p>
+                                    @endforeach
+                                </div>
+                                <a href="{{ route('recetas.show', $receta->id) }}" class="btn btn-primary-recetas">Ver
+                                    más</a>
                             </div>
                         </div>
                     </div>

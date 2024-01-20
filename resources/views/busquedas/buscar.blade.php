@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1>Resultados de la Búsqueda</h1>
+    <div class="container mt-6">
+        <h1 class="h1 text-center mb-4">Resultados de la Búsqueda</h1>
         <div class="row">
             @forelse ($recetas as $receta)
-                <div class="col-md-4">
-                    <div class="card">
+                <div class="col-md-4 mb-4">
+                    <div class="card buscar">
                         @if ($receta->imagen)
                             <img src="{{ asset($receta->imagen) }}" class="card-img-top" alt="Imagen de la receta">
                         @endif
@@ -23,19 +23,22 @@
             @endforelse
         </div>
 
-        <div class="row-cols-lg-1">
-            <div class="external-articles mt-4">
-                <h3>Explora Más sobre Cocina</h3>
-                <ul>
-                    @foreach($artExternos as $articulo)
-                        <li>
-                            <a href="{{ $articulo['url'] }}" target="_blank" rel="noopener noreferrer">{{ $articulo['titulo'] }}</a>
-                            <p>{{ $articulo['resumen'] }}</p>
-                        </li>
-                    @endforeach
-                </ul>
+        
+    <div class="row">
+        <h3 class="display-6 text-bg-light mt-5">Explora Más sobre Cocina</h3>
+        @foreach($artExternos as $articulo)
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <!-- Si tienes imágenes para los artículos, puedes incluirlas aquí -->
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $articulo['titulo'] }}</h5>
+                        <img src="{{ asset($articulo['imagen']) }}" class="card-img-top" alt="Imagen del artículo">
+                        <p class="card-text">{{ $articulo['resumen'] }}</p>
+                        <a href="{{ $articulo['url'] }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Leer Más</a>
+                    </div>
+                </div>
             </div>
-
-        </div>
+        @endforeach
+    </div>
     </div>
 @endsection

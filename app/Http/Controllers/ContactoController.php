@@ -12,11 +12,13 @@ use Illuminate\Http\Request;
 
 class ContactoController extends Controller
 {
+    //Pagina de formulario de contacto
     public function index()
     {
-        return view('contacto.contacto');
+        return view('contacto.form-contacto');
     }
 
+    //Validar formulario contacto
     public function store(Request $request)
     {
         // Validar los datos enviados desde el formulario
@@ -30,7 +32,7 @@ class ContactoController extends Controller
         ]);
 
         // Crear un nuevo registro en la tabla de contactos
-        $contacto= Contacto::create([
+        $contacto = Contacto::create([
             'nombre' => $request->input('nombre'),
             'apellidos' => $request->input('apellidos'),
             'telefono' => $request->input('telefono'),
@@ -46,17 +48,23 @@ class ContactoController extends Controller
         if ($admin) {
             $admin->notify(new ContactoNotification($contacto)); // Pasa el contacto como argumento
         }
-
-        // Enviar correo electrónico al administrador
-        if ($admin) {
-            Mail::to($admin->email)->send(new ContactoMail($contacto));
-        }
-
+        Mail::to($admin)->send(new ContactoMail($contacto));
+ 
         // Redirigir a una página de confirmación o mostrar un mensaje de éxito
         return redirect()->route('contacto.contacto_confirm');
     }
+
+    //pagina de confirmacion 
     public function contacto_confirm()
     {
         return view('contacto.contacto_confirm');
+    }
+
+    //Ver las consultas echas
+    public function show($id)
+    {
+        $consulta = Contacto::findOrFail($id);
+
+        return view('consulta.ver', compact('consulta'));
     }
 }

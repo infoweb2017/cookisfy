@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Receta;
+use App\Models\Calificacion;
+use App\Models\Ingrediente;
+use App\Models\Comentario;
 
 class User extends Authenticatable
 {
@@ -22,6 +26,7 @@ class User extends Authenticatable
         'email',
         'password',
         'is_admin',
+        'imagen_perfil',
     ];
 
     /**
@@ -58,14 +63,22 @@ class User extends Authenticatable
     //Un usuario que reseñas ha echo
     public function calificacion()
     {
-        return $this->hasMany(calificacion::class);
+        return $this->hasMany(Calificacion::class);
     }
 
-    public function recetas(){
+    public function recetas()
+    {
         return $this->hasMany(Receta::class);
     }
     public function routeNotificationForMail()
     {
         return $this->email; // Cambia esto según tu estructura de datos
+    }
+    public function ingredientes(){
+        return $this->hasMany(Ingrediente::class);
+    }
+    public function comentarios()
+    {
+        return $this->hasMany(Comentario::class);
     }
 }

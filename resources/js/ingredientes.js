@@ -1,68 +1,74 @@
 import './bootstrap';
 
-document.addEventListener('DOMContentLoaded', () => {
-    const btnMostrarIngredientes = document.getElementById('btnMostrarIngredientes');
-    const selectorIngredientes = document.getElementById('selectorIngredientes');
-    const checkboxes = document.querySelectorAll('.ingrediente-checkbox');
-    const buscarIngrediente = document.getElementById('buscarIngrediente');
-    const btnMostrarSeleccionados = document.getElementById('btnMostrarSeleccionados');
-    const ingredientesMostrados = document.getElementById('ingredientesMostrados');
-    const btnMostrarFormularioIngrediente = document.getElementById('btnMostrarFormularioIngrediente');
-    const formularioAgregarIngrediente = document.getElementById('formularioAgregarIngrediente');
-    const btnGuardarNuevoIngrediente = document.getElementById('btnGuardarNuevoIngrediente');
-    const nombreNuevoIngrediente = document.getElementById('nombreNuevoIngrediente');
+const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    btnMostrarIngredientes.addEventListener('click', () => {
-        selectorIngredientes.style.display = selectorIngredientes.style.display === "none" ? "block" : "none";
-    });
-    btnMostrarFormularioIngrediente.addEventListener('click', () => {
-        formularioAgregarIngrediente.style.display = 'block';
-    });
+document.addEventListener('DOMContentLoaded', function () {
+    const inputBusqueda = document.getElementById('buscarIngrediente');
+    const resultadosBusqueda = document.getElementById('resultadoBusqueda');
+    const ingredientesSeleccionadosFormulario = document.getElementById('ingredientesSeleccionadosFormulario');
+    const ingredientesSeleccionadosContainer = document.getElementById('ingredientesSeleccionados');
 
+    inputBusqueda.addEventListener('input', function () {
+        const busqueda = this.value;
 
-    buscarIngrediente.addEventListener('input', () => {
-        const textoBuscado = buscarIngrediente.value.toLowerCase();
-        checkboxes.forEach(checkbox => {
-            const nombreIngrediente = checkbox.nextElementSibling.textContent.toLowerCase();
-            const contenedor = checkbox.closest('.checkbox');
-            if (nombreIngrediente.includes(textoBuscado)) {
-                contenedor.style.display = '';
-            } else {
-                contenedor.style.display = 'none';
-            }
-        });
-    });
+        // Si la búsqueda está vacía, no hacer la solicitud
+        if (!busqueda.trim()) {
+            resultadosBusqueda.innerHTML = '';
+            return;
+        }
 
-    btnMostrarSeleccionados.addEventListener('click', () => {
-        let ingredientesSeleccionados = [];
-        checkboxes.forEach(checkbox => {
-            if (checkbox.checked) {
-                const nombreIngrediente = checkbox.closest('.checkbox').querySelector('span').textContent.trim();
-                ingredientesSeleccionados.push(nombreIngrediente);
-            }
-        });
-
-        ingredientesMostrados.textContent = 'Ingredientes seleccionados: ' + ingredientesSeleccionados.join(', ');
-        ingredientesMostrados.style.display = 'block';
-    });
-
-    btnGuardarNuevoIngrediente.addEventListener('click', () => {
-        const ingrediente = nombreNuevoIngrediente.value;
-
-        fetch('/ingredientes/guardar', {
-            method: 'POST',
+        // Realizar solicitud AJAX
+        fetch('/ingrediente/' + encodeURIComponent(busqueda), {
             headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}' // Importante para la seguridad en Laravel
-            },
-            body: JSON.stringify({ nombre: ingrediente })
+                'X-CSRF-TOKEN': csrfToken
+            }
         })
             .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                // Aquí puedes actualizar la UI según la respuesta
-                formularioAgregarIngrediente.style.display = 'none';
+            .then(resultados => {
+                // Aquí manejas los resultados de la búsqueda
+                //resultadosBusqueda.innerHTML = '';
+                resultados.forEach(ingrediente => {
+                    const div = document.createElement('div');
+                    div.classList.add('ingrediente-item');
+                    //div.style.cursor = 'pointer';
+                    div.textContent = ingrediente.nombre;
+                    div.addEventListener('click', function () {
+                        // Añadir ingrediente a la lista de seleccionados
+                        ingredientesSeleccionadosFormulario.value += ingrediente.id + ',';
+
+                        // Mostrar en la interfaz de usuario
+                        const ingredienteSeleccionadoDiv = document.createElement('div');
+                        ingredienteSeleccionadoDiv.textContent = ingrediente.nombre;
+                        ingredienteSeleccionadoDiv.id = 'selected-' + ingrediente.id;
+
+                        // Botón o enlace para eliminar
+                        const eliminarBtn = document.createElement('button');
+                        eliminarBtn.textContent = 'Borrar';
+                        eliminarBtn.className = 'boton-eliminar';
+                        eliminarBtn.onclick = function () {
+                            // Eliminar este ingrediente de la lista de seleccionados
+                            ingredienteSeleccionadoDiv.remove();
+                            eliminarIngrediente(ingrediente.id);
+                        };
+
+                        ingredienteSeleccionadoDiv.appendChild(eliminarBtn);
+                        ingredientesSeleccionadosContainer.appendChild(ingredienteSeleccionadoDiv);
+                    });
+
+                    resultadosBusqueda.appendChild(div);
+                });
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => {
+                console.error('Error en la solicitud AJAX:', error);
+                alert('Error en la solicitud: ' + error.message);
+            });
     });
 });
+
+function eliminarIngrediente(idIngrediente) {
+    let ingredientes = ingredientesSeleccionadosFormulario.value.split(',');
+    ingredientes = ingredientes.filter(id => id != idIngrediente);
+    ingredientesSeleccionadosFormulario.value = ingredientes.join(',');
+}
+
+
