@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-5">
-        <h2>Editar evento</h2>
+        <h2 class="text-center mt-4 text-bg-info">Editar evento</h2>
         <form action="{{ route('admin.eventos.update', $evento->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT') {{-- Método HTTP para actualizar --}}

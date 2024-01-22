@@ -172,10 +172,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script>
         // Datos para el gráfico 
-        let informacion = ["recetas", "ingredientes", "categorias", "ofertas", "articulos", "eventos", "usuarios",
-            'comentarios'
+        let informacion = ["Recetas", "Ingredientes", "Categorias", "Ofertas", "Articulos", "Eventos", "Usuarios",
+            "Comentarios"
         ];
-        let contenido = [12, 328, 62, 6, 4, 3, 2, 6];
+        let contenido = [12, 329, 62, 6, 4, 3, 3, 7];
 
         // Configuración del gráfico
         const ctx = document.getElementById('info').getContext('2d');

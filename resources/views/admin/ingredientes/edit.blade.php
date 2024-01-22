@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-5">
-        <h2>Editar ingrediente</h2>
+        <h2 class="text-center mt-4 text-bg-info">Editar ingrediente</h2>
         <form action="{{ route('admin.ingredientes.update', $ingrediente->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT') {{-- Método HTTP para actualizar --}}

@@ -37,10 +37,37 @@
                                     <p>
                                     <blockquote><b>Descripción:</b></blockquote> {{ $receta->descripcion }}</p>
                                     <p>
-                                    <blockquote><b>Ingredientes:</b></blockquote> {{ $receta->ingredientes }}</p>
-                                    <p>
-                                    <blockquote><b>Pasos:</b></blockquote>{{ $receta->comentarios }}</p>
+                                    <blockquote><b>Ingredientes:</b></blockquote>
+                                    </p>
+                                    <ul>
+                                        @foreach ($receta->ingredientes as $ingrediente)
+                                            <li>{{ $ingrediente->nombre }} - {{ $ingrediente->cantidad }}
+                                                {{ $ingrediente->unidad }}</li>
+                                        @endforeach
+                                    </ul>
+                                    @if ($receta->comentarios->count() > 0)
+                                        <div class="comentarios-anteriores">
+                                            <h4>Comentarios anteriores</h4>
+                                            @foreach ($receta->comentarios as $comentario)
+                                                <div class="comentario">
+                                                    <p>{{ $comentario->descripcion }}</p>
+                                                    <small>Por: {{ $comentario->user->name }}</small>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <p>No hay comentarios aún.</p>
+                                    @endif
 
+                                    <form action="{{ route('comentarios.nuevo') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="receta_id" value="{{ $receta->id }}">
+
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="descripcion" rows="3" placeholder="Agrega tu comentario"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Comentar</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

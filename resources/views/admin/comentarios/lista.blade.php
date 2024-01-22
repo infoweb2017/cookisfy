@@ -3,7 +3,9 @@
 
 @section('content')
     <div class="container mt-3">
-        <h2>Listado de Comentarios por Usuarios y Recetas</h2>
+        <h2 class="text-center mt-4 text-bg-info">Listado de Comentarios por Usuarios y Recetas</h2>
+        <!-- Botón para crear una nueva receta -->
+        <a href="{{ route('admin.comentarios.create') }}" class="btn btn-primary mb-3">Nuevo</a>
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
@@ -11,6 +13,7 @@
                     <th>Usuario</th>
                     <th>Receta</th>
                     <th>Comentario</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +23,16 @@
                         <td>{{ $comentario->user->name }}</td>
                         <td>{{ $comentario->receta->titulo }}</td>
                         <td>{{ $comentario->descripcion }}</td>
+                        <td>
+                            <a href="{{ route('admin.comentarios.edit', $comentario->id) }}"
+                                class="btn btn-sm btn-primary">Editar</a>
+                            <form action="{{ route('admin.comentarios.destroy', $comentario->id) }}" method="POST"
+                                style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

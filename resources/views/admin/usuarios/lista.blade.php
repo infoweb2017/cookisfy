@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container mt-3">
-        <h2>Listado de Usuarios</h2>
+        <h2 class="text-center mt-4 text-bg-info">Listado de Usuarios</h2>
         <a href="{{ route('admin.usuarios.create') }}" class="btn btn-l btn-success col-1 mb-2">Nuevo</a>
         <table class="table table-dark table-striped">
             <thead>

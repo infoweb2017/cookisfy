@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container mt-3">
-        <h2>Listado de Categoria</h2>
+        <h2 class="text-center mt-4 text-bg-info">Listado de Categoria</h2>
 
         <!-- Botón para crear una nueva receta -->
         <a href="{{ route('admin.categorias.create') }}" class="btn btn-primary mb-3">Nueva Categoria</a>

@@ -53,7 +53,7 @@ class AdminController extends Controller
         $categorias = Categoria::all(); // Obtener todas las categorías
         $recetaPasos = Receta::with('pasos')->find($id);
         // Puedes necesitar obtener otras relaciones o datos relevantes aquí
-        return view('admin.recetas.edit', compact('receta','categorias', 'recetaPasos'));
+        return view('admin.recetas.edit', compact('receta', 'categorias', 'recetaPasos'));
     }
     public function updateReceta(Request $request, $id)
     {
@@ -198,8 +198,16 @@ class AdminController extends Controller
         $totalCategoria = Categoria::count();
         $totalIngrediente = Ingrediente::count();
 
-        return view('admin.admin-dashboard', compact('totalUsuarios', 'totalRecetas', 'totalComentarios',
-        'totalArticulos', 'totalEventos', 'totalOfertas','totalCategoria','totalIngrediente'));
+        return view('admin.admin-dashboard', compact(
+            'totalUsuarios',
+            'totalRecetas',
+            'totalComentarios',
+            'totalArticulos',
+            'totalEventos',
+            'totalOfertas',
+            'totalCategoria',
+            'totalIngrediente'
+        ));
     }
 
     //Pendiente de poder terminarlo OJO
@@ -214,7 +222,9 @@ class AdminController extends Controller
             'recetas' => Receta::all(),
             'ofertas' => Ofertas::all(),
         ];
-    
+
         return response()->json($datos); // Devuelve los datos en formato JSON
     }
+
+    
 }

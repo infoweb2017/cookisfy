@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container mt-3">
-        <h2>Listado de ofertas</h2>
+        <h2 class="text-center mt-4 text-bg-info">Listado de ofertas</h2>
 
         <!-- Botón para crear una nueva oferta -->
         <a href="{{ route('admin.ofertas.create') }}" class="btn btn-primary mb-3">Nueva Oferta</a>

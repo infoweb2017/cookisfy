@@ -9,27 +9,11 @@ use App\Models\User;
 
 class ComentarioController extends Controller
 {
-    public function listComentarios(Request $request)
-    {
-        $comentarios = Comentario::with('receta', 'user')
-            ->when($request->has('receta'), function ($query) use ($request) {
-                $query->whereHas('receta', function ($subquery) use ($request) {
-                    $subquery->where('nombre', 'like', '%' . $request->input('receta') . '%');
-                });
-            })
-            ->when($request->has('usuario'), function ($query) use ($request) {
-                $query->whereHas('user', function ($subquery) use ($request) {
-                    $subquery->where('name', 'like', '%' . $request->input('usuario') . '%');
-                });
-            })
-            ->get();
-
-        return view('admin.comentarios.lista', compact('comentarios'));
-    }
 
     // Método para mostrar el formulario de creación de comentarios
-    public function create(Receta $receta)
+    public function create()
     {
+        //return view('admin.comentarios.crear');
     }
 
     // Método para almacenar el comentario en la base de datos
@@ -39,7 +23,7 @@ class ComentarioController extends Controller
         $request->validate([
             //'user_id' => auth()->id(),
             'descripcion' => 'required|string|max:255',
-            //'receta_id' => 'required|exists:recetas,id',
+            'receta_id' => 'required|exists:recetas,id',
         ]);
 
         // Crea el comentario asociado a la receta y al usuario autenticado
@@ -51,13 +35,9 @@ class ComentarioController extends Controller
             'descripcion' => $request->descripcion,
         ]);
 
-        if (auth()->User()->isAdmin) {
-            // Usuario administrador
-            return redirect()->route('admin.comentarios')->with('success', 'Comentario actualizado.');
-        } else {
-            // Usuario normal
-            return redirect()->route('recetas.show', $receta->id)->with('success', 'Comentario actualizado.');
-        }
+        // Usuario normal
+        return redirect()->route('recetas.show', $receta->id)->with('success', 'Comentario actualizado.');
+
 
         // return back()->with('success', 'Comentario agregado.');
         //return view('recetas.inicio', ['recetaId' => $recetaId]);
@@ -108,5 +88,105 @@ class ComentarioController extends Controller
         $comentario->delete();
 
         return back()->with('success', 'Comentario eliminado.');
+    }
+
+    public function nuevoComentario(Request $request)
+    {
+        // Validación del formulario (personaliza según tus necesidades)
+        $request->validate([
+            'receta_id' => 'required|exists:recetas,id',
+            'descripcion' => 'required|string|max:255',
+        ]);
+
+        // Crea el comentario asociado a la receta y al usuario autenticado
+        Comentario::create([
+            'user_id' => auth()->id(),
+            'receta_id' => $request->input('receta_id'),
+            'descripcion' => $request->input('descripcion'),
+        ]);
+
+
+        return redirect()->route('recetas.inicio', $request->input('receta_id'))->with('success', 'Comentario agregado.');
+    }
+
+
+    //Administrar comentarios
+    public function listComentarios(Request $request)
+    {
+        $comentarios = Comentario::with('receta', 'user')
+            ->when($request->has('receta'), function ($query) use ($request) {
+                $query->whereHas('receta', function ($subquery) use ($request) {
+                    $subquery->where('nombre', 'like', '%' . $request->input('receta') . '%');
+                });
+            })
+            ->when($request->has('usuario'), function ($query) use ($request) {
+                $query->whereHas('user', function ($subquery) use ($request) {
+                    $subquery->where('name', 'like', '%' . $request->input('usuario') . '%');
+                });
+            })
+            ->get();
+
+        return view('admin.comentarios.lista', compact('comentarios'));
+    }
+
+    // Mostrar el formulario de creación
+    public function createComentarioForm()
+    {
+        $recetas = Receta::all();
+        $usuarios = User::all();
+        return view('admin.comentarios.crear', compact('recetas', 'usuarios'));
+    }
+
+    // Procesar el formulario y guardar el comentario
+    public function createComentario(Request $request)
+    {
+        // Validación del formulario (personaliza según tus necesidades)
+        $request->validate([
+            'receta_id' => 'required|exists:recetas,id',
+            'descripcion' => 'required|string|max:255',
+        ]);
+
+        // Crea el comentario asociado a la receta y al usuario autenticado
+        Comentario::create([
+            'user_id' => auth()->id(),
+            'receta_id' => $request->input('receta_id'),
+            'descripcion' => $request->input('descripcion'),
+        ]);
+
+        return redirect()->route('admin.comentarios')->with('success', 'Comentario creado correctamente.');
+    }
+    // Mostrar el formulario de edición de comentario
+    public function editComentarioForm($comentarioId)
+    {
+        $recetas = Receta::all();
+        $usuarios = User::all();
+        $comentario = Comentario::findOrFail($comentarioId);
+        return view('admin.comentarios.edit', compact('comentario', 'recetas', 'usuarios'));
+    }
+
+    // Procesar el formulario de edición y actualizar el comentario
+    public function updateComentario(Request $request, $comentarioId)
+    {
+        $comentario = Comentario::findOrFail($comentarioId);
+
+        // Validación del formulario (personaliza según tus necesidades)
+        $request->validate([
+            'descripcion' => 'required|string|max:255',
+        ]);
+
+        // Actualiza el comentario
+        $comentario->update([
+            'descripcion' => $request->input('descripcion'),
+        ]);
+
+        return redirect()->route('admin.comentarios')->with('success', 'Comentario actualizado correctamente.');
+    }
+
+    public function deleteComentario($comentarioId)
+    {
+        $comentario = Comentario::findOrFail($comentarioId);
+        $comentario->delete();
+
+        return redirect()->route('admin.comentarios')->with('success', 'Comentario eliminado correctamente.');
     }
 }

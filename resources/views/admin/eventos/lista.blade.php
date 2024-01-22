@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container mt-3">
-        <h2>Listado de evento</h2>
+        <h2 class="text-center mt-4 text-bg-info">Listado de evento</h2>
 
         <!-- Botón para crear un evento -->
         <a href="{{ route('admin.eventos.create') }}" class="btn btn-primary mb-3">Nuevo Evento</a>

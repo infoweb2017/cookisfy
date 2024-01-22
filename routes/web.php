@@ -83,6 +83,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/perfil/partials', [ProfileController::class, 'destroy'])->name('profile.destroy'); //Elimina la cuenta del usuario
 
     // Rutas de comentarios y calificaciones
+    Route::post('/comentarios/nuevo', [ComentarioController::class, 'nuevoComentario'])->name('comentarios.nuevo');
     Route::post('/recetas/{receta}/comentarios', [ComentarioController::class, 'store'])->name('comentarios.store');
     Route::get('/comentarios/{comentario}/edit', [ComentarioController::class, 'edit'])->name('comentarios.edit');
     Route::put('/comentarios/{comentario}', [ComentarioController::class, 'update'])->name('comentarios.update');
@@ -181,11 +182,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin/admin-dashboard', [AdminController::class, 'contador'])->name('admin.admin-dashboard');
 
         // Rutas para la administración de comentarios
-        Route::get('admin/comentarios', [ComentarioController::class, 'listComentarios'])->name('admin.comentario');
-        Route::get('admin/comentarios/create', [ComentarioController::class, 'store'])->name('admin.comentarios.create');
-        Route::get('admin/comentarios/{comentario}/edit', [ComentarioController::class, 'edit'])->name('admin.comentarios.edit');
-        Route::put('admin/comentarios/{comentario}', [ComentarioController::class, 'update'])->name('admin.comentarios.update');
-        Route::delete('admin/comentarios/{comentario}', [ComentarioController::class, 'destroy'])->name('admin.comentarios.destroy');
+        Route::get('/admin/comentarios', [ComentarioController::class, 'listComentarios'])->name('admin.comentarios');
+        Route::get('/admin/comentarios/create', [ComentarioController::class, 'createComentarioForm'])->name('admin.comentarios.create');
+        Route::post('/admin/comentarios', [ComentarioController::class, 'createComentario'])->name('admin.comentarios.store');
+        Route::get('/admin/comentarios/{comentario}/edit', [ComentarioController::class, 'editComentarioForm'])->name('admin.comentarios.edit');
+        Route::put('/admin/comentarios/{comentario}', [ComentarioController::class, 'updateComentario'])->name('admin.comentarios.update');
+        Route::delete('/admin/comentarios/{comentario}', [ComentarioController::class, 'deleteComentario'])->name('admin.comentarios.destroy');
 
         //Gráficos
         /*Route::get('/admin/datos-grafico', function () {

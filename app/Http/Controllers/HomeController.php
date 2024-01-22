@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comentario;
 use App\Models\Evento;
 use App\Models\Ofertas;
 use Illuminate\Http\Request;
@@ -24,11 +25,12 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    public function index()  
+    public function index()
     {
         $eventos = Evento::all();
         $ofertas = Ofertas::all();
+        $comentarios = Comentario::all();
 
-        return view('index',compact(['eventos', 'ofertas']));
+        return view('index', compact(['eventos', 'ofertas','comentarios']));
     }
 }

@@ -54,7 +54,23 @@ $('.img-container').hover(
     }
 );
 
+/**Testimonio pagina index */
+$(document).ready(function () {
+    // Iniciar el carrusel automáticamente
+    $('#testimoniosCarousel').carousel();
 
+    // Velocidad de reproducción (ajusta el valor en milisegundos según tu preferencia)
+    let velocidad = 3000; // 3 segundos
+
+    // Función para mover automáticamente al siguiente testimonio
+    function moveNext() {
+        $('.carousel').carousel('next');
+        setTimeout(moveNext, velocidad);
+    }
+
+    // Iniciar la función de movimiento automático
+    setTimeout(moveNext, velocidad);
+});
 
 
 

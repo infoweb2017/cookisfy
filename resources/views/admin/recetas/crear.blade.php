@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mt-4 mb-4">Nueva Receta</h1>
+        <h1 class="text-center mt-4 text-bg-info">Nueva Receta</h1>
         <form action="{{ route('recetas.store') }}" method="POST" enctype="multipart/form-data">
              <!-- Agrega el token CSRF para proteger el formulario -->
              @csrf

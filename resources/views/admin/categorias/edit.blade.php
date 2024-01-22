@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mt-4 mb-4">Editar categoria: {{ $categoria->titulo }}</h1>
+        <h1 class="text-center mt-4 text-bg-info">Editar categoria: {{ $categoria->titulo }}</h1>
         <form action="{{ route('admin.categorias.update', $categoria->id) }}" method="POST">
             @csrf <!---Agrega el token CSRF para proteger el formulario--->
             @method('PUT') <!---Utiliza el método HTTP PUT para actualizar--->

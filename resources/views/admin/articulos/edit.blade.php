@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-5">
-        <h2>Editar Artículo</h2>
+        <h2 class="text-center mt-4 text-bg-info">Editar Artículo</h2>
         <form action="{{ route('admin.articulos.update', $articulo->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT') {{-- Método HTTP para actualizar --}}

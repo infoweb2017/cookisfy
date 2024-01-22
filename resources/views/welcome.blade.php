@@ -83,10 +83,19 @@
                                     <p>
                                     <blockquote><b>Tiempo preparación:</b></blockquote>{{ $receta->tiempo_preparacion }}
                                     </p>
-                                    @foreach ($receta->comentarios as $comentario)
-                                        <p>{{ $comentario->descripcion }}</p>
-                                    @endforeach
-
+                                    @if ($receta->comentarios->count() > 0)
+                                        <div class="comentarios-anteriores">
+                                            <h4>Comentarios</h4>
+                                            <!-- Mostrar los comentarios públicos -->
+                                            @foreach ($comentario as $coment)
+                                                <div class="comentario">
+                                                    <p>{{ $coment->descripcion }}</p>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <p>No hay comentarios aún.</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>

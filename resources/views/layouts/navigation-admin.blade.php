@@ -96,8 +96,8 @@
                             Gestión Comentarios
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="admin.comentario">Listar</a></li>
-                            <li><a class="dropdown-item" href="admin.comentarios.create">Crear</a></li>
+                            <li><a class="dropdown-item" href={{ route('admin.comentarios') }}>Listar</a></li>
+                            <li><a class="dropdown-item" href={{ route('admin.comentarios.create') }}>Crear</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -32,10 +32,11 @@ class RecetaController extends Controller
     //Solo mostrara 10 receta, para page: welcome
     public function mostrarRecetasYArticulos()
     {
+        $comentario = Comentario::where('publico', true)->get();
         $recetas = Receta::take(10)->get(); // Obtener las primeras 10 recetas
         $articulos = Articulo::all();
 
-        return view('welcome', compact('recetas', 'articulos'));
+        return view('welcome', compact('recetas', 'articulos', 'comentario'));
     }
     //Método que mostrará todas las recetas
     public function galeria()
@@ -188,7 +189,7 @@ class RecetaController extends Controller
         $receta->update($request->only(['titulo', 'descripcion', 'categoria_id', 'tiempo_preparacion']));
 
         // Manejar la actualización de la imagen si se proporciona una nueva
-        
+
         if ($request->hasFile('imagen')) {
             // Eliminar la imagen anterior si existe
             if ($receta->imagen) {
@@ -199,7 +200,7 @@ class RecetaController extends Controller
             $nombreImagen = $request->file('imagen')->store('images/recetas', 'public');
             $receta->update(['imagen' => $nombreImagen]);
         }
-        
+
 
         // Actualizar los pasos de la receta
         foreach ($request->input('pasos', []) as $orden => $descripcionPaso) {

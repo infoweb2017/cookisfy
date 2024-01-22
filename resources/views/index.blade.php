@@ -62,53 +62,16 @@
         <div class="container h-auto bg-body-tertiary mb-5 mt-4">
             <div id="testimoniosCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="card tarjeta-testimonio">
-                            <div class="card-body">
-                                <p class="texto-testimonio">"¡Esta receta fue increíble! Fácil de seguir y el resultado fue
-                                    delicioso."</p>
-                                <h5 class="card-title">- José L.</h5>
+                    @foreach ($comentarios as $key => $comentario)
+                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                            <div class="card tarjeta-testimonio">
+                                <div class="card-body">
+                                    <p class="texto-testimonio">{{ $comentario->descripcion }}</p>
+                                    <h5 class="card-title">- {{ $comentario->user->name }}</h5>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Repite esto para cada testimonio -->
-                    <div class="carousel-item">
-                        <div class="card tarjeta-testimonio">
-                            <div class="card-body">
-                                <p class="texto-testimonio">"Descubrí este sitio buscando recetas saludables y me he
-                                    convertido en
-                                    una fan incondicional. Cada receta que he probado ha sido un éxito total en casa.
-                                    ¡Gracias por
-                                    hacer la cocina tan accesible y deliciosa!"</p>
-                                <h5 class="card-title">- Maria de los A.</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="card tarjeta-testimonio">
-                            <div class="card-body">
-                                <p class="texto-testimonio">"Como principiante en la cocina, siempre me sentí intimidado
-                                    por
-                                    recetas
-                                    complicadas. Pero aquí encontré tutoriales que me guiaron paso a paso, y ahora me siento
-                                    mucho
-                                    más seguro. ¡He impresionado a mis amigos con mis nuevos platos!"</p>
-                                <h5 class="card-title">- Eugenio C.</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="card tarjeta-testimonio">
-                            <div class="card-body">
-                                <p class="texto-testimonio">"Siempre he disfrutado cocinar, pero este sitio ha llevado mi
-                                    pasión a otro
-                                    nivel. Las ideas creativas y los consejos útiles han enriquecido mi experiencia
-                                    culinaria. ¡Es mi
-                                    fuente número uno para inspiración en la cocina!"</p>
-                                <h5 class="card-title">- Carolina H.</h5>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#testimoniosCarousel"
                     data-bs-slide="prev">
@@ -121,7 +84,8 @@
                     <span class="visually-hidden">Siguiente</span>
                 </button>
             </div>
-        </div><!--FIn de testimonios -->
+        </div><!-- Fin de testimonios -->
+
 
         <!-- Videos o tutoriales -->
         <div class="row">
