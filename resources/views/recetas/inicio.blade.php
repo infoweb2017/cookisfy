@@ -1,4 +1,6 @@
+{{-- receta.inicio --}}
 @extends('layouts.app')
+
 @section('content')
     <div class="container">
         <h1>Recetas</h1>
@@ -27,9 +29,35 @@
                                 {{-- Mostrar los comentarios --}}
                                 <div class="comentarios">
                                     <h5>Comentarios</h5>
-                                    @foreach ($receta->comentarios as $comentario)
-                                        <p>{{ $comentario->user->name }}: {{ $comentario->descripcion }}</p>
-                                    @endforeach
+                                    @if ($receta->comentarios->count() > 0)
+                                        @foreach ($receta->comentarios as $comentario)
+                                            <p>{{ $comentario->user->name }}: {{ $comentario->descripcion }}</p>
+                                        @endforeach
+
+                                        @foreach ($receta->comentarios as $comentario)
+                                            <div class="comentario">
+                                                <p>{{ $comentario->descripcion }}</p>
+                                                @if (auth()->check() && $comentario->user_id == auth()->user()->id)
+                                                    <!-- Mostrar formulario de edición para el usuario propietario del comentario -->
+                                                    <button class="btn btn-banner"
+                                                        id="editarComentario{{ $comentario->id }}"
+                                                        onclick="mostrarFormulario({{ $comentario->id }})">Editar</button>
+                                                    <form id="formularioEditar{{ $comentario->id }}" style="display: none;"
+                                                        action="{{ route('comentarios.update', $comentario->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="form-group">
+                                                            <textarea name="descripcion" required class="form-control">{{ $comentario->descripcion }}</textarea>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                                    </form>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <p>No hay comentarios aún.</p>
+                                    @endif
                                 </div>
                                 <a href="{{ route('recetas.show', $receta->id) }}" class="btn btn-primary-recetas">Ver
                                     más</a>
@@ -41,5 +69,17 @@
         @else
             <p>No hay recetas creadas aún.</p>
         @endif
+        <script>
+            /**Mostrar comentario y editarlo */
+            function mostrarFormulario(comentarioId) {
+                var botonEditar = document.getElementById('editarComentario' + comentarioId);
+                var formularioEditar = document.getElementById('formularioEditar' + comentarioId);
+
+                if (botonEditar && formularioEditar) {
+                    botonEditar.style.display = 'none';
+                    formularioEditar.style.display = 'block';
+                }
+            }
+        </script>
     </div>
 @endsection

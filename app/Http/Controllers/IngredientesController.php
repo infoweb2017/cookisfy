@@ -32,7 +32,7 @@ class IngredientesController extends Controller
             'cantidad_ingredientes' => 'nullable|integer',
             'opcional' => 'nullable|boolean',
             'unidad' => 'nullable|string|max:255',
-            'categoria_id' => 'required|exists:categorias,id',
+            // 'categoria_id' => 'required|exists:categorias,id',
         ]);
 
         // Crear la nuevo ingrediente
@@ -63,9 +63,9 @@ class IngredientesController extends Controller
             'cantidad_ingredientes' => 'nullable|integer',
             'opcional' => 'nullable',
             'unidad' => 'nullable',
-            'categoria_id' => 'required|exists:categorias,id',
+            //'categoria_id' => 'required|exists:categorias,id',
         ]);
-        
+
         // Datos a actualizar
         $data = [
             'nombre' => $request->nombre,
@@ -86,7 +86,7 @@ class IngredientesController extends Controller
     public function delete(Ingrediente $ingrediente)
     {
         $ingrediente->delete();
-        return redirect()->route('admin.ingrediente')
+        return redirect()->route('admin.ingredientes')
             ->with('success', 'Ingrediente eliminada con éxito');
     }
 }

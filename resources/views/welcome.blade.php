@@ -39,7 +39,8 @@
 
             <!-- Sección de recetas con descripción -->
             <div class="row">
-                @foreach ($recetas->take(6) as $receta){{--Con take(6) lmito las recetas--}}
+                @foreach ($recetas->take(6) as $receta)
+                    {{-- Con take(6) lmito las recetas --}}
                     <div class="col-md-4 mb-4">
                         <div class="card">
                             <img src="{{ asset('' . $receta->imagen) }}" alt="{{ $receta->titulo }}" class="card-img-top"
@@ -69,16 +70,23 @@
                                     <p>
                                     <blockquote><b>Descripción:</b></blockquote> {{ $receta->descripcion }}</p>
                                     <p>
-                                    <blockquote><b>Ingredientes:</b></blockquote></p>
+                                    <blockquote><b>Ingredientes:</b></blockquote>
+                                    </p>
                                     <ul>
-                                        @foreach(json_decode($receta->ingredientes) as $ingrediente)
-                                        <li>
-                                            {{ $ingrediente->nombre }} - {{ $ingrediente->pivot->cantidad }} {{ $ingrediente->pivot->unidad }}
-                                        </li>
+                                        @foreach (json_decode($receta->ingredientes) as $ingrediente)
+                                            <li>
+                                                {{ $ingrediente->nombre }} - {{ $ingrediente->pivot->cantidad }}
+                                                {{ $ingrediente->pivot->unidad }}
+                                            </li>
                                         @endforeach
                                     </ul>
                                     <p>
-                                    <blockquote><b>Tiempo preparación:</b></blockquote>{{ $receta->tiempo_preparacion }}</p>
+                                    <blockquote><b>Tiempo preparación:</b></blockquote>{{ $receta->tiempo_preparacion }}
+                                    </p>
+                                    @foreach ($receta->comentarios as $comentario)
+                                        <p>{{ $comentario->descripcion }}</p>
+                                    @endforeach
+
                                 </div>
                             </div>
                         </div>
@@ -108,7 +116,7 @@
                                 <p class="card-text">{{ $articulo->descripcion }}</p>
                                 <a href="{{ $articulo->url }}" class="btn btn-card-enlaces center-block"
                                     target="_blank">Ver</a>
-                            
+
                             </div>
                         </div>
                     </div>

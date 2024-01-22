@@ -203,12 +203,18 @@ class AdminController extends Controller
     }
 
     //Pendiente de poder terminarlo OJO
-    public function grafico()
+    public function obtenerDatosParaGrafico()
     {
-        $recetasPorMes = DB::table('recetas')
-            ->select(DB::raw('MONTH(created_at) as mes'), DB::raw('COUNT(*) as total'))
-            ->groupBy('mes')
-            ->get();
-        return view('admin.admin-dashboard', compact('recetasPorMes'));
+        $datos = [
+            'articulos' => Articulo::all(),
+            'eventos' => Evento::all(),
+            'categorias' => Categoria::all(),
+            'ingredientes' => Ingrediente::all(),
+            'usuarios' => User::all(),
+            'recetas' => Receta::all(),
+            'ofertas' => Ofertas::all(),
+        ];
+    
+        return response()->json($datos); // Devuelve los datos en formato JSON
     }
 }

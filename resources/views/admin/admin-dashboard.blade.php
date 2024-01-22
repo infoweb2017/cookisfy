@@ -153,17 +153,17 @@
                     <div class="card-body bg-body-tertiary">
                         <h5 class="card-title">Comentarios</h5>
                         <p class="card-text">Administrar Comentarios.</p>
-                        <a href="{{ route('admin.usuarios') }}" class="btn btn-primary">Gestionar Comentarios</a>
+                        <a href="{{ route('admin.comentarios') }}" class="btn btn-primary">Gestionar Comentarios</a>
                     </div>
                 </div>
             </div>
         </div>{{-- Fin Enlaces directos --}}
 
-        <!-- Gráfico de barras para mostrar recetas por mes -->        
+        <!-- Gráfico de barras para mostrar recetas por mes -->
         <div class="card mt-4">
             <div class="card-body">
-                <h3>Recetas por Mes</h3>
-                <canvas id="recetasPorMes"></canvas>
+                <h3>Todo el contenido</h3>
+                <canvas id="info"></canvas>
             </div>
         </div>
     </div>
@@ -171,21 +171,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script>
-        // Datos para el gráfico de recetas por mes (debes proporcionar estos datos)
-        let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        // Datos para el gráfico 
+        let informacion = ["recetas", "ingredientes", "categorias", "ofertas", "articulos", "eventos", "usuarios",
+            'comentarios'
         ];
-        let recetasPorMesData = [1, 4, 1, 15, 13, 3, 2, 5, 2, 15, 10, 5, 6, 6];
+        let contenido = [12, 328, 62, 6, 4, 3, 2, 6];
 
         // Configuración del gráfico
-        const ctx = document.getElementById('recetasPorMes').getContext('2d');
-        let recetasPorMes = new Chart(ctx, {
+        const ctx = document.getElementById('info').getContext('2d');
+        let info = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: meses,
+                labels: informacion, // Corregido: Utiliza el array 'informacion' como etiquetas
                 datasets: [{
-                    label: 'Recetas por Mes',
-                    data: recetasPorMesData,
+                    label: 'Todo el contenido',
+                    data: contenido,
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 1

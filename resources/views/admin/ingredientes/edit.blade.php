@@ -36,7 +36,7 @@
             </div>
 
             {{-- Botón de Envío --}}
-            <button type="submit" class="btn btn-primary">Actualizar ingrediente</button>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
         </form>
     </div>
 @endsection

@@ -1,4 +1,6 @@
+{{-- receta.galeria --}}
 @extends('layouts.app')
+
 @section('content')
     <div class="container">
         <h2 class="display-6 text-center mb-10 mt-10">Galería de Recetas</h2>
@@ -8,8 +10,8 @@
                 @foreach ($recetas as $receta)
                     <div class="col-md-4 mb-4">
                         <div class="card">
-                            <img src="{{ asset('storage/' . $receta->imagen) }}" alt="{{ $receta->titulo }}" class="card-img-top"
-                                data-bs-toggle="modal" data-bs-target="#recetaModal{{ $receta->id }}">
+                            <img src="{{ asset('storage/' . $receta->imagen) }}" alt="{{ $receta->titulo }}"
+                                class="card-img-top" data-bs-toggle="modal" data-bs-target="#recetaModal{{ $receta->id }}">
                             <div class="card-body">
                                 <h3 class="card-title">{{ $receta->titulo }}</h3>
                                 <p class="card-text descripcion-corta">{{ $receta->descripcion }}</p>
@@ -37,8 +39,8 @@
                                     <p>
                                     <blockquote><b>Ingredientes:</b></blockquote> {{ $receta->ingredientes }}</p>
                                     <p>
-                                        <blockquote><b>Pasos:</b></blockquote>{{ $receta->comentarios }}</p>
-                                    
+                                    <blockquote><b>Pasos:</b></blockquote>{{ $receta->comentarios }}</p>
+
                                 </div>
                             </div>
                         </div>

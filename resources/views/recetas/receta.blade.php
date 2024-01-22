@@ -1,3 +1,4 @@
+{{--receta.receta--}}
 @extends('layouts.app')
 
 @section('content')
@@ -7,7 +8,6 @@
             <div class="img-container">
                 <img src="{{ asset('storage/' . $receta->imagen) }}" alt="Imagen de la receta" class="img-fluid w-60">
             </div>
-
         </div>
 
         <!-- Columna para el texto y los formularios -->
@@ -23,15 +23,16 @@
             {{-- Sección para comentarios --}}
             <div class="comentarios">
                 <h3>Comentarios</h3>
-                    @foreach ($receta->comentarios as $comentario)
-                        <p>{{ $comentario->user->name }}: {{ $comentario->descripcion }}</p>
-                    @endforeach
+                @foreach ($receta->comentarios as $comentario)
+                    <p>{{ $comentario->user->name }}: {{ $comentario->descripcion }}</p>
+                @endforeach
                 {{-- Formulario para agregar un nuevo comentario --}}
                 <form action="{{ route('comentarios.store', $receta->id) }}" method="POST" class="mt-3">
                     @csrf
                     <div class="mb-3">
                         <textarea name="descripcion" required class="form-control"></textarea>
                     </div>
+                    <input type="hidden" name="receta_id" value="{{ $receta->id }}">
                     <button type="submit" class="btn btn-primary">Agregar Comentario</button>
                 </form>
             </div>
@@ -48,9 +49,17 @@
                 <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::url()) }}" target="_blank">
                     <i class="fa fa-twitter"></i> Twitter
                 </a>
-                <!-- Agregar más opciones de redes sociales aquí -->
+                <a href="https://www.google.com/search?q={{ urlencode(Request::url()) }}" target="_blank">
+                    <i class="fa fa-google"></i> Google
+                </a>
+                <a href="https://www.instagram.com/" target="_blank">
+                    <i class="fa fa-instagram"></i> Instagram
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(Request::url()) }}"
+                    target="_blank">
+                    <i class="fa fa-instagram"></i> Linkedin
+                </a>
             </div>
-
             {{-- Botones de Editar y Eliminar --}}
             <a href="{{ route('recetas.edit', $receta->id) }}" class="btn btn-primary me-2 mt-2">Editar</a>
             <form action="{{ route('recetas.destroy', $receta->id) }}" method="POST" style="display: inline;">
@@ -59,16 +68,13 @@
                 <button type="submit" class="btn btn-danger mt-2"
                     onclick="return confirm('¿Estás seguro de querer eliminar esta receta?')">Eliminar</button>
             </form>
-
             <div class="">
                 {{-- Enlace para regresar a recetas --}}
                 <a href="{{ route('recetas.inicio') }}" class="btn btn-secondary mt-5">Volver a Recetas</a>
             </div>
         </div>
-
         {{-- Aqui irá un carrusel de imagenes de las recetas, para dar mas dinamismo --}}
         <!-- Carrusel de otras recetas -->
-
         @if ($otrasRecetas->isNotEmpty())
             <div class="col-4 mt-6 img-thumbnail custom-carousel-container">
                 <div id="recetasCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -95,6 +101,5 @@
                 </div>
             </div>
         @endif
-
     </div>
 @endsection

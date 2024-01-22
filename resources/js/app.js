@@ -40,19 +40,22 @@ document.addEventListener('DOMContentLoaded', function () {
 var imagenes = document.querySelectorAll('.card-img-top');
 
 // Agrega la clase zoomable a todas las imágenes
-imagenes.forEach(function(imagen) {
+imagenes.forEach(function (imagen) {
     imagen.classList.add('zoomable');
 });
 
 /*Hacer zoom efecto lupa*/
 $('.img-container').hover(
-    function() {
+    function () {
         $(this).find('img').css('transform', 'scale(1.2)');
-    }, 
-    function() {
+    },
+    function () {
         $(this).find('img').css('transform', 'scale(1)');
     }
 );
+
+
+
 
 
 

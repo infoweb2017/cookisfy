@@ -83,12 +83,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/perfil/partials', [ProfileController::class, 'destroy'])->name('profile.destroy'); //Elimina la cuenta del usuario
 
     // Rutas de comentarios y calificaciones
-    Route::get('/recetas/{receta}/comentarios/create', [ComentarioController::class,'create'])->name('comentarios.create');
-    Route::post('/recetas/{recetaId}/comentarios', [ComentarioController::class, 'store'])->name('comentarios.store');
-    Route::get('comentarios/{comentario}/edit', [ComentarioController::class, 'edit'])->name('comentarios.edit');
-    Route::put('comentarios/{comentario}', [ComentarioController::class, 'update'])->name('comentarios.update');
-    Route::delete('comentarios/{comentario}', [ComentarioController::class, 'destroy'])->name('comentarios.destroy');
-    
+    Route::post('/recetas/{receta}/comentarios', [ComentarioController::class, 'store'])->name('comentarios.store');
+    Route::get('/comentarios/{comentario}/edit', [ComentarioController::class, 'edit'])->name('comentarios.edit');
+    Route::put('/comentarios/{comentario}', [ComentarioController::class, 'update'])->name('comentarios.update');
+    Route::delete('/comentarios/{comentario}', [ComentarioController::class, 'destroy'])->name('comentarios.destroy');
+
     // Rutas de  calificaciones(reseñas)
     Route::post('/recetas/{receta}/calificaciones', [RecetaController::class, 'store'])->name('calificaciones.store');
 
@@ -180,6 +179,18 @@ Route::middleware('auth')->group(function () {
 
         //Ruta contador
         Route::get('/admin/admin-dashboard', [AdminController::class, 'contador'])->name('admin.admin-dashboard');
+
+        // Rutas para la administración de comentarios
+        Route::get('admin/comentarios', [ComentarioController::class, 'listComentarios'])->name('admin.comentario');
+        Route::get('admin/comentarios/create', [ComentarioController::class, 'store'])->name('admin.comentarios.create');
+        Route::get('admin/comentarios/{comentario}/edit', [ComentarioController::class, 'edit'])->name('admin.comentarios.edit');
+        Route::put('admin/comentarios/{comentario}', [ComentarioController::class, 'update'])->name('admin.comentarios.update');
+        Route::delete('admin/comentarios/{comentario}', [ComentarioController::class, 'destroy'])->name('admin.comentarios.destroy');
+
+        //Gráficos
+        /*Route::get('/admin/datos-grafico', function () {
+            return redirect()->route('admin.admin-dashboard');
+        })->name('obtener.datos.grafico');*/
     });
 });
 

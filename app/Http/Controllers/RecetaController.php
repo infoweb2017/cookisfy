@@ -7,12 +7,14 @@ use App\Models\buscar;
 use App\Models\Categoria;
 use App\Models\Comentario;
 use App\Models\Ingrediente;
+use App\Models\Preparacion_paso;
 use App\Models\Receta;
 use App\Models\User;
 use Exception;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -53,9 +55,9 @@ class RecetaController extends Controller
     public function create()
     {
         $categorias = Categoria::all(); // Obtiene todas las categorías 
-        //$ingredientes = Ingrediente::all(); // Obtiene todos los ingredientes 
+        $ingredientes = Ingrediente::all(); // Obtiene todos los ingredientes 
         // Retorna una vista que muestra el formulario para crear una nueva receta
-        return view('recetas.create', compact('categorias'));
+        return view('recetas.create', compact('categorias', 'ingredientes'));
     }
     /**
      *Almacena un recurso recién creado..
@@ -96,6 +98,29 @@ class RecetaController extends Controller
         // Asignar el usuario autenticado como autor de la receta
         $receta->user_id = $user->id;
 
+        $receta->save(); // Guardar la receta
+
+        // Asociar ingredientes a la receta
+        foreach ($request->input('ingredientes', []) as $dataIngrediente) {
+            if (!empty($dataIngrediente['id']) && !empty($dataIngrediente['cantidad']) && !empty($dataIngrediente['unidad'])) {
+                $receta->ingredientes()->attach($dataIngrediente['id'], [
+                    'cantidad' => $dataIngrediente['cantidad'],
+                    'unidad' => $dataIngrediente['unidad']
+                ]);
+            }
+        }
+
+        // Procesar y guardar los pasos de la receta
+        foreach ($request->input('pasos', []) as $orden => $descripcionPaso) {
+            if (trim($descripcionPaso) != '') {
+                Preparacion_paso::create([
+                    'receta_id' => $receta->id,
+                    'pasos' => $descripcionPaso,
+                    'solicitar' => $orden,
+                ]);
+            }
+        }
+
         // Guardar la receta en la base de datos
         $receta->save();
 
@@ -129,8 +154,9 @@ class RecetaController extends Controller
         }
         // Obtén las categorías disponibles y pásalas a la vista
         $categorias = Categoria::all();
+        $todosIngredientes = Ingrediente::all();
         // Retornar una vista que muestra el formulario para editar la receta
-        return view('recetas.edit', compact('receta', 'categorias'));
+        return view('recetas.edit', compact('receta', 'categorias', 'todosIngredientes'));
     }
 
     /**
@@ -152,19 +178,70 @@ class RecetaController extends Controller
         ]);
 
         // Actualizar la receta
-        $receta->update([
+        /*$receta->update([
             'titulo' => $request->titulo,
             'descripcion' => $request->descripcion,
             'categoria_id' => $request->categoria_id,
             'tiempo_preparacion' => $request->tiempo_preparacion,
-        ]);
+        ]);*/
 
+        $receta->update($request->only(['titulo', 'descripcion', 'categoria_id', 'tiempo_preparacion']));
+
+        // Manejar la actualización de la imagen si se proporciona una nueva
+        
         if ($request->hasFile('imagen')) {
+            // Eliminar la imagen anterior si existe
+            if ($receta->imagen) {
+                Storage::disk('public')->delete($receta->imagen);
+            }
+
+            // Almacenar la nueva imagen
             $nombreImagen = $request->file('imagen')->store('images/recetas', 'public');
             $receta->update(['imagen' => $nombreImagen]);
         }
-        // Guardar la receta en la base de datos
-        $receta->save();
+        
+
+        // Actualizar los pasos de la receta
+        foreach ($request->input('pasos', []) as $orden => $descripcionPaso) {
+            if (!is_null($orden) && !empty($descripcionPaso)) {
+                $paso = $receta->pasos()->where('solicitar', $orden)->first();
+
+                if ($paso) {
+                    // Actualizar el paso existente
+                    $paso->update(['pasos' => $descripcionPaso]);
+                } else {
+                    // Crear un nuevo paso si no existe
+                    $receta->pasos()->create([
+                        'solicitar' => $orden,
+                        'pasos' => $descripcionPaso,
+                    ]);
+                }
+            }
+        }
+
+        // Actualizar ingredientes
+        $ingredientesData = [];
+        foreach ($request->input('ingredientes', []) as $dataIngrediente) {
+            // Verifica si 'cantidad' está definido en $dataIngrediente y no es null
+            if (isset($dataIngrediente['cantidad']) && !is_null($dataIngrediente['cantidad'])) {
+                // Verifica si 'unidad' está definido en $dataIngrediente
+                if (isset($dataIngrediente['unidad'])) {
+                    DB::table('receta_ingrediente')
+                        ->where('receta_id', $receta->id)
+                        ->where('ingrediente_id', $dataIngrediente['id'])
+                        ->update([
+                            'cantidad' => $dataIngrediente['cantidad'],
+                            'unidad' => $dataIngrediente['unidad'],
+                        ]);
+                    $ingredientesData[$dataIngrediente['id']] = [
+                        'cantidad' => $dataIngrediente['cantidad'],
+                        'unidad' => $dataIngrediente['unidad'],
+                    ];
+                }
+            }
+        }
+        $receta->ingredientes()->sync($ingredientesData);
+        $receta->save(); // Guardar la receta en la base de datos
 
         // Redireccionar a la vista de detalle de la receta actualizada
         return redirect()->route('recetas.show', $receta->id)->with('success', 'Receta actualizada exitosamente');

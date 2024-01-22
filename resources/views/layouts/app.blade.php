@@ -1,5 +1,4 @@
 <!--- resources/views/layouts/app.blade.php -->
-
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -39,27 +38,24 @@
         <main class="container-fluid">
             @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js', 'resources/js/ingredientes.js'])
             @yield('content')<!-- Sección específica de contenido de cada vista -->
-            
         </main>
-        @include('layouts.footer')
-
-        <!--- Cookies --->
-        @if (!session()->has('cookies_aceptadas'))
-            <div id="cookieContainer">
-                <p>Este sitio usa cookies para mejorar la experiencia del usuario.
-                    <a href="{{ route('cookies') }} target='_blank'">Leer más...</a>.
-                </p>
-                <button id="aceptarCookies">Aceptar Cookies</button>
-                <button id="cancelarCookies">Cancelar</button>
-            </div>
-        @endif
-
-        @vite(['resources/js/ingredientes.js', 'resources/js/aceptar-cookies.js'])
-
-        <!-- Incluir el archivo JS externo para la lógica de aceptación de cookies -->
-        <script src="{{ asset('js/aceptar-cookies.js') }}"></script>
     </div>
+    @include('layouts.footer')
+    <!--- Cookies --->
+    @if (!session()->has('cookies_aceptadas'))
+        <div id="cookieContainer">
+            <p>Este sitio usa cookies para mejorar la experiencia del usuario.
+                <a href="{{ route('cookies') }} target='_blank'">Leer más...</a>.
+            </p>
+            <button id="aceptarCookies">Aceptar Cookies</button>
+            <button id="cancelarCookies">Cancelar</button>
+        </div>
+    @endif
 
+    @vite(['resources/js/ingredientes.js', 'resources/js/aceptar-cookies.js'])
+
+    <!-- Incluir el archivo JS externo para la lógica de aceptación de cookies -->
+    <script src="{{ asset('js/aceptar-cookies.js') }}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Obtén el enlace de inicio por su ID
@@ -75,7 +71,6 @@
             }
         });
     </script>
-
 </body>
 
 </html>

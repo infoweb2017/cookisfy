@@ -1,3 +1,4 @@
+{{-- receta.create --}}
 @extends('layouts.app')
 
 @section('content')
@@ -37,6 +38,30 @@
                         @endforeach
                     </select>
                 </div>
+
+                <!---Campo para los ingredientes --->
+                <div id="ingredientes-dinamicos">
+                    <div class="ingrediente">
+                        <select name="ingredientes[0][id]" class="form-control">
+                            @foreach ($ingredientes as $ingrediente)
+                                <option value="{{ $ingrediente->id }}">{{ $ingrediente->nombre }}</option>
+                            @endforeach
+                        </select>
+                        <input type="text" name="ingredientes[0][cantidad]" placeholder="Cantidad">
+                        <input type="text" name="ingredientes[0][unidad]" placeholder="Unidad">
+                    </div>
+                </div>
+                <button type="button" id="agregar-ingrediente">Agregar Ingrediente</button>
+
+                <!-- Campo para los pasos de la receta -->
+                <div class="form-group" id="pasos-container">
+                    <label for="pasos">Pasos de Preparación:</label>
+                    <div class="paso">
+                        <textarea name="pasos[0]" class="form-control" placeholder="Paso 1"></textarea>
+                    </div>
+                </div>
+                <button type="button" id="btn-agregar-paso" class="btn btn-secondary">Añadir otro paso</button>
+
                 <!---Campo para la imagen --->
                 <div class="form-group" id="imagen-receta">
                     <label for="imagen">Imagen:</label>
@@ -51,5 +76,18 @@
             <p>Debes estar registrado para crear recetas. <a href="{{ route('login') }}">Inicia sesión</a> o <a
                     href="{{ route('register') }}">regístrate</a>.</p>
         @endauth
+
+        {{-- Pasos --}}
+        <script>
+            document.getElementById('btn-agregar-paso').addEventListener('click', function() {
+                let container = document.getElementById('pasos-container');
+                let newPasoIndex = container.getElementsByClassName('paso').length;
+                let pasoDiv = document.createElement('div');
+                pasoDiv.classList.add('paso');
+                pasoDiv.innerHTML =
+                    `<textarea name="pasos[${newPasoIndex}]" class="form-control" placeholder="Paso ${newPasoIndex + 1}"></textarea>`;
+                container.appendChild(pasoDiv);
+            });
+        </script>
     </div>
 @endsection

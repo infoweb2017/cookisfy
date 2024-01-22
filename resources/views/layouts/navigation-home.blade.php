@@ -1,6 +1,6 @@
+<!--- resources/views/layouts/navigation-home.blade.php -->
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +20,6 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
-
 <body>
     <div class="banner">
         <h1>Cookisfy</h1>
@@ -31,7 +30,7 @@
     <nav x-data="{ open: false }" class="navbar navbar-expand-lg navbar-collapse bg-danger-subtle">
         <div class="container">
             <!-- Logo o nombre del sitio -->
-            <a class="navbar-brand border-r" href="">
+            <a class="navbar-brand border-r" href="{{route('page_welcome')}}">
                 <img class="rounded-circle" src="{{ asset('/images/logo/logo_mini.1.png') }}" alt=""
                     height="46">
             </a><!-- Fin Logo o nombre del sitio -->
@@ -46,7 +45,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="welcome">Inicio</a>
+                        <a class="nav-link" href="{{route('page_welcome')}}">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('fotos') }}">Galeria</a>

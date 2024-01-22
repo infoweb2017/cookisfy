@@ -94,4 +94,7 @@ class ArticuloController extends Controller
         return redirect()->route('admin.articulos')
             ->with('success', 'Artículo eliminado con éxito');
     }
+
+
+    
 }

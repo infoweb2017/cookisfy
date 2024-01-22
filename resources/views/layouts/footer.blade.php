@@ -1,3 +1,4 @@
+<!--- resources/views/layouts/footer.blade.php --> 
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -29,24 +30,29 @@
                 <!-- Section: Social media -->
                 <section class="mb-4">
                     <!-- Facebook -->
-                    <a class="btn btn-primary btn-floating m-1" style="background-color: #677caa;" href="#!"
-                        role="button"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #677caa;"
+                        href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::url()) }}"
+                        target="_blank" role="button"><i class="fab fa-facebook-f"></i></a>
 
                     <!-- Twitter -->
-                    <a class="btn btn-primary btn-floating m-1" style="background-color: #55a2dd;" href="#!"
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #55a2dd;"
+                        href=https://twitter.com/intent/tweet?url={{ urlencode(Request::url()) }}" target="_blank"
                         role="button"><i class="fab fa-twitter"></i></a>
 
                     <!-- Google -->
-                    <a class="btn btn-primary btn-floating m-1" style="background-color: #b85447;" href="#!"
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #b85447;"
+                        href="https://www.google.com/search?q={{ urlencode(Request::url()) }}" target="_blank"
                         role="button"><i class="fab fa-google"></i></a>
 
                     <!-- Instagram -->
-                    <a class="btn btn-primary btn-floating m-1" style="background-color: #664166;" href="#!"
-                        role="button"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #664166;"
+                        href="https://www.instagram.com/" target="_blank" role="button"><i
+                            class="fab fa-instagram"></i></a>
 
                     <!-- Linkedin -->
-                    <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;" href="#!"
-                        role="button"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;"
+                        href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(Request::url()) }}"
+                        target="_blank" role="button"><i class="fab fa-linkedin-in"></i></a>
                 </section><!-- Section: Social media -->
             </div>
             <!-- Contacto -->
@@ -90,7 +96,7 @@
             <!-- Copyright -->
             <div class="text-center p-4" id="copy-right">
                 © 2023 Copyright:
-                <a class="text-copy" href="welcome">Cookisfy</a>
+                <a class="text-copy" href="{{ route('page_welcome') }}">Cookisfy</a>
             </div><!-- FIN Copyright -->
         </footer>
     </div> <!-- Fin Footer -->

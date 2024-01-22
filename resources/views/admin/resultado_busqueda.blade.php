@@ -13,11 +13,17 @@
                             @endif
                             <div class="card-body">
                                 <h5 class="card-title">{{ $receta->titulo }}</h5>
-                                <p class="card-text">{{ Str::limit($receta->descripcion, 150) }}</p>
+                                <p class="card-text">{{ Str::limit($receta->descripcion, 550) }}</p>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
-                                    <p><b>Ingredientes:</b> </p>{{ $receta->ingredientes }}
+                                    <p><b>Ingredientes:</b></p>
+                                    <ul>
+                                        @foreach ($receta->ingredientes as $ingrediente)
+                                            <li>{{ $ingrediente->nombre }}: {{ $ingrediente->cantidad }}
+                                                {{ $ingrediente->unidad }}</li>
+                                        @endforeach
+                                    </ul>
                                 </li>
                                 <li class="list-group-item">
                                     <p><b>Categoría:</b> </p> {{ $receta->categoria }}
@@ -28,11 +34,15 @@
                                     <b>Esta receta no contiene pasos de preparación.</b>
                                 @endif
                             </ul>
+                            <a href="{{ route('admin.recetas') }}" class="btn btn-banner mt-5 mb-2 text-center">Ver</a>
                         </div>
+
                     </div>
                 @endforeach
             </div>
-        @endif
+        @endif{{-- Fin de receta --}}
+
+        {{-- Usuario --}}
         @if (!empty($usuarios))
             <ul class="list-group">
                 @foreach ($usuarios as $usuario)
@@ -40,12 +50,15 @@
                         <h5>Usuario: {{ $usuario->name }}</h5>
                         <p>Correo: {{ $usuario->email }}</p>
                         <div class="btn-group" role="group" aria-label="Acciones">
-                            <a href="{{ route('admin.usuarios.edit', $usuario->id) }}" class="bt-edit btn btn-primary">Editar</a>
-                            
-                            <form action="{{ route('admin.usuarios.delete', $usuario->id) }}" method="POST" style="display:inline;>
+                            <a href="{{ route('admin.usuarios.edit', $usuario->id) }}"
+                                class="bt-edit btn btn-primary">Editar</a>
+
+                            <form action="{{ route('admin.usuarios.delete', $usuario->id) }}" method="POST"
+                                style="display:inline;>
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <button type="submit"
+                                class="btn btn-danger">Eliminar</button>
                             </form>
                         </div>
                     </li>
@@ -54,6 +67,7 @@
         @endif
         @if (empty($recetas) && empty($usuarios))
             <p>No se encontraron resultados para la búsqueda.</p>
-        @endif
+        @endif{{-- Fin Usuario --}}
+
     </div>
 @endsection
