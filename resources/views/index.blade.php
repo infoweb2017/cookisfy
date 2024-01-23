@@ -93,7 +93,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title"></h5>
-                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/8FmjFTrBbt8?autoplay=1"
+                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/8FmjFTrBbt8?mute=1"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen></iframe>
@@ -118,7 +118,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title"></h5>
-                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/v8IWx1hkqSc?autoplay=1"
+                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/v8IWx1hkqSc?mute=1"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen></iframe>

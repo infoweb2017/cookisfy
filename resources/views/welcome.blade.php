@@ -87,7 +87,7 @@
                                         <div class="comentarios-anteriores">
                                             <h4>Comentarios</h4>
                                             <!-- Mostrar los comentarios públicos -->
-                                            @foreach ($comentario as $coment)
+                                            @foreach ($receta->comentarios as $coment)
                                                 <div class="comentario">
                                                     <p>{{ $coment->descripcion }}</p>
                                                 </div>

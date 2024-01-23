@@ -53,21 +53,18 @@ class ProfileController extends Controller
 
             // Manejar la carga de la foto de perfil si está presente en la solicitud
             if ($request->hasFile('imagen_perfil')) {
-                if ($user->imagen_perfil != null) {
-                    Storage::disk('images')->delete($user->imagen_perfils);
-                    $user->image->delete();
+                // Verificar si la imagen de perfil anterior existe y no es nula
+                if ($user->imagen_perfil && is_string($user->imagen_perfil)) {
+                    // Eliminar la imagen de perfil anterior
+                    Storage::disk('public')->delete($user->imagen_perfil);
                 }
-
-                /*$user->image() -> create([
-                    'imagen_perfils' => $request->store('profile-photo', 'images'),
-                ]);*/
-                // Si se proporciona una nueva imagen, almacenarla y actualizar la columna 'profile_photo'
-                $profilePhoto = $request->file('imagen_perfil');
-                $profilePhotoPath = $profilePhoto->store('images/img_usuario', 'public'); // Almacenar la imagen en el sistema de archivos 'public'
-
+            
+                // Subir la nueva imagen de perfil
+                $profilePhotoPath = $request->file('imagen_perfil')->store('images/img_usuario', 'public');
+            
                 // Actualizar el campo de la foto de perfil en la base de datos
                 $user->imagen_perfil = $profilePhotoPath;
-
+            
                 // Guardar los cambios en el usuario
                 $user->save();
             }

@@ -5,15 +5,16 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            Una vez eliminada su cuenta, todos sus recursos y datos se borrarán permanentemente. Antes de eliminar su cuenta, descargue los datos o la información que desee conservar.
+            Una vez eliminada su cuenta, todos sus recursos y datos se borrarán permanentemente. Antes de eliminar su
+            cuenta, descargue los datos o la información que desee conservar.
         </p>
     </header>
 
     <button class="btn btn-danger"
-        onclick="document.getElementById('confirm-user-deletion-modal').classList.add('show')"
-    >Eliminar cuenta</button>
+        onclick="document.getElementById('confirm-user-deletion-modal').classList.add('show')">Eliminar cuenta</button>
 
-    <div class="modal fade" id="confirm-user-deletion-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="confirm-user-deletion-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form method="post" action="{{ route('profile.destroy') }}" class="p-4">
@@ -25,19 +26,15 @@
                     </h2>
 
                     <p class="mt-1 text-sm text-gray-600">
-                        Una vez eliminada su cuenta, todos sus recursos y datos se borrarán permanentemente. Introduzca su contraseña para confirmar que desea eliminar definitivamente su cuenta.
+                        Una vez eliminada su cuenta, todos sus recursos y datos se borrarán permanentemente. Introduzca
+                        su contraseña para confirmar que desea eliminar definitivamente su cuenta.
                     </p>
 
                     <div class="mt-4">
                         <label for="password" class="form-label">Contraseña</label>
-                        <input
-                            id="password"
-                            name="password"
-                            type="password"
-                            class="form-control"
-                            placeholder="Contraseña"
-                        />
-                        @if($errors->userDeletion->has('password'))
+                        <input id="password" name="password" type="password" class="form-control"
+                            placeholder="Contraseña" />
+                        @if ($errors->userDeletion->has('password'))
                             <div class="text-danger">{{ $errors->userDeletion->first('password') }}</div>
                         @endif
                     </div>
@@ -57,4 +54,3 @@
             $('[data-toggle="modal"]').modal();
         });
     </script>
-</section>

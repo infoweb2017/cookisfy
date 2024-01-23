@@ -1,46 +1,57 @@
 @extends('layouts.app')
 
 @section('content')
-    <form method="POST" action="{{ route('password.store') }}">
-        @csrf
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">{{ __('Restablecer Contraseña') }}</div>
 
-        <!-- Token de restablecimiento de contraseña -->
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+                    <div class="card-body mb-10">
+                        <form method="PUT" action="{{ route('password.update') }}">
+                            @csrf
 
-        <!-- Correo electronico -->
-        <div>
-            <label for="email">Email</label>
-            <input id="email" class="block mt-1 w-full" type="email" name="email"
-                value="{{ old('email', $request->email) }}" required autofocus autocomplete="username" />
-            @error('email')
-                <div class="mt-2 text-red-600">{{ $message }}</div>
-            @enderror
+                            <!-- Token de restablecimiento de contraseña -->
+                            <input type="hidden" name="token" value="{{ $request->route('token') }}">
+
+                            <!-- Correo electrónico -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label">{{ __('Email') }}</label>
+                                <input id="email" class="form-control" type="email" name="email"
+                                    value="{{ old('email', $request->email) }}" required autocomplete="username" />
+                                @error('email')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Contraseña -->
+                            <div class="mb-3">
+                                <label for="password" class="form-label">{{ __('Contraseña') }}</label>
+                                <input id="password" class="form-control" type="password" name="password" required
+                                    autocomplete="new-password" />
+                                @error('password')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Confirmar contraseña -->
+                            <div class="mb-3">
+                                <label for="password_confirmation"
+                                    class="form-label">{{ __('Confirmar Contraseña') }}</label>
+                                <input id="password_confirmation" class="form-control" type="password"
+                                    name="password_confirmation" required autocomplete="new-password" />
+                                @error('password_confirmation')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">{{ __('Restaurar Contraseña') }}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- Contraseña -->
-        <div class="mt-4">
-            <label for="password">Password</label>
-            <input id="password" class="block mt-1 w-full" type="password" name="password" required
-                autocomplete="new-password" />
-            @error('password')
-                <div class="mt-2 text-red-600">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <!-- Confirmar contraseña -->
-        <div class="mt-4">
-            <label for="password_confirmation">COnfirmar contraseña</label>
-            <input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation"
-                required autocomplete="new-password" />
-            @error('password_confirmation')
-                <div class="mt-2 text-red-600">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-800">
-                Restaurar contraseña
-            </button>
-        </div>
-    </form>
+    </div>
 @endsection

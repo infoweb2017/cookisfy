@@ -25,6 +25,6 @@
 
         <h3 class="h-politica">Más información</h3>
         <p class="p-politica">Para obtener más información sobre cómo utilizamos las cookies y cómo puede gestionarlas, consulte nuestra <a
-                href="politica/privacidad">Política de Privacidad</a>.</p>
+                href="{{ route('privacidad') }}">Política de Privacidad</a>.</p>
     </div>
 @endsection

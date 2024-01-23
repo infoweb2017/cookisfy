@@ -6,7 +6,7 @@
                     Información de perfil
                 </h2>
                 @if (auth()->user()->imagen_perfil)
-                    <img class="rounded-circle" src="{{ asset(Storage::url(auth()->user()->foto_perfil)) }}"
+                    <img class="rounded-circle" src="{{ asset(Storage::url(auth()->user()->imagen_perfil)) }}"
                         alt="Foto de perfil" height="46">
                 @else
                     <p>No hay foto de perfil</p>
@@ -70,7 +70,7 @@
                     <div class="mt-4 mb-4">
                         <label for="imagen_perfil" class="form-label">Foto de perfil</label>
                         <input type="file" class="form-control" id="imagen_perfil" name="imagen_perfil"
-                            accept="image/img_usuario*">
+                            accept="images/img_usuario*">
                     </div>
 
                     <div class="d-flex align-items-center gap-4">
