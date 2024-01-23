@@ -36,7 +36,7 @@
             <div class="col-md-3 mb-4">
                 <div class="card">
                     <div class="card-body bg-body-secondary">
-                        <h5 class="card-title">Articulos Realizados</h5>
+                        <h5 class="card-title">Articulos</h5>
                         <p class="card-text">
                             Cantidad: {{ $totalArticulos }}</p>
                     </div>
@@ -45,7 +45,7 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body bg-body-secondary">
-                        <h5 class="card-title">Ofertas Realizados</h5>
+                        <h5 class="card-title">Ofertas</h5>
                         <p class="card-text">
                             Cantidad: {{ $totalOfertas }}</p>
                     </div>
@@ -54,7 +54,7 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body bg-body-secondary">
-                        <h5 class="card-title">Eventos Realizados</h5>
+                        <h5 class="card-title">Eventos</h5>
                         <p class="card-text">
                             Cantidad: {{ $totalEventos }}</p>
                     </div>
@@ -98,7 +98,7 @@
                     <div class="card-body bg-body-tertiary">
                         <h5 class="card-title">Recetas</h5>
                         <p class="card-text">Administrar recetas publicadas.</p>
-                        <a href="{{ route('admin.recetas') }}" class="btn btn-primary">Gestionar Recetas</a>
+                        <a href="{{ route('admin.recetas') }}" class="btn btn-primary">Gestionar</a>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
                     <div class="card-body bg-body-tertiary">
                         <h5 class="card-title">Categorías</h5>
                         <p class="card-text">Administrar categorías de recetas.</p>
-                        <a href="{{ route('admin.categorias') }}" class="btn btn-primary">Gestionar Categorías</a>
+                        <a href="{{ route('admin.categorias') }}" class="btn btn-primary">Gestionar</a>
                     </div>
                 </div>
             </div>
@@ -117,7 +117,7 @@
                     <div class="card-body bg-body-tertiary">
                         <h5 class="card-title">Ingredientes</h5>
                         <p class="card-text">Administrar ingredientes de recetas.</p>
-                        <a href="{{ route('admin.ingredientes') }}" class="btn btn-primary">Gestionar Ingredientes</a>
+                        <a href="{{ route('admin.ingredientes') }}" class="btn btn-primary">Gestionar</a>
                     </div>
                 </div>
             </div>
@@ -126,7 +126,7 @@
                     <div class="card-body bg-body-tertiary">
                         <h5 class="card-title">Ofertas</h5>
                         <p class="card-text">Administrar Ofertas.</p>
-                        <a href="{{ route('admin.ofertas') }}" class="btn btn-primary">Gestionar Ofertas</a>
+                        <a href="{{ route('admin.ofertas') }}" class="btn btn-primary">Gestionar</a>
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@
                     <div class="card-body bg-body-tertiary">
                         <h5 class="card-title">Eventos</h5>
                         <p class="card-text">Administrar Eventos.</p>
-                        <a href="{{ route('admin.eventos') }}" class="btn btn-primary">Gestionar Eventos</a>
+                        <a href="{{ route('admin.eventos') }}" class="btn btn-primary">Gestionar</a>
                     </div>
                 </div>
             </div>
@@ -144,7 +144,7 @@
                     <div class="card-body bg-body-tertiary">
                         <h5 class="card-title">Articulos</h5>
                         <p class="card-text">Administrar Articulos.</p>
-                        <a href="{{ route('admin.articulos') }}" class="btn btn-primary">Gestionar Articulos</a>
+                        <a href="{{ route('admin.articulos') }}" class="btn btn-primary">Gestionar</a>
                     </div>
                 </div>
             </div>
@@ -153,7 +153,7 @@
                     <div class="card-body bg-body-tertiary">
                         <h5 class="card-title">Comentarios</h5>
                         <p class="card-text">Administrar Comentarios.</p>
-                        <a href="{{ route('admin.comentarios') }}" class="btn btn-primary">Gestionar Comentarios</a>
+                        <a href="{{ route('admin.comentarios') }}" class="btn btn-primary">Gestionar</a>
                     </div>
                 </div>
             </div>
