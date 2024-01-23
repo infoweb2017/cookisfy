@@ -39,7 +39,6 @@ class CategoriaController extends Controller
             'categoria_tipo' => $request->categoria_tipo,
         ]);
 
-        // Redirigir al usuario con un mensaje de éxito
         return redirect()->route('admin.categorias')
             ->with('success', 'Categoria creada con éxito');
     }

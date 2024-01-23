@@ -29,7 +29,6 @@ class AdminController extends Controller
     // Otros métodos para editar, actualizar y eliminar recetas
     public function createRecetaForm()
     {
-        // Puedo necesitar obtener categorías u otros datos relevantes aquí
         return view('admin.recetas.crear');
     }
     public function storeReceta(Request $request)
@@ -50,7 +49,7 @@ class AdminController extends Controller
     public function editRecetaForm($id)
     {
         $receta = Receta::find($id);
-        $categorias = Categoria::all(); // Obtener todas las categorías
+        $categorias = Categoria::all(); 
         $recetaPasos = Receta::with('pasos')->find($id);
         // Puedes necesitar obtener otras relaciones o datos relevantes aquí
         return view('admin.recetas.edit', compact('receta', 'categorias', 'recetaPasos'));
@@ -154,8 +153,7 @@ class AdminController extends Controller
         // Actualiza los campos del usuario con los datos del formulario
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-        // Actualiza otros campos según tus necesidades
-
+        
         // Guarda los cambios en la base de datos
         $user->save();
 
@@ -224,7 +222,5 @@ class AdminController extends Controller
         ];
 
         return response()->json($datos); // Devuelve los datos en formato JSON
-    }
-
-    
+    }   
 }

@@ -27,7 +27,5 @@ class SubscriberController extends Controller
         Mail::to(env('ADMIN_EMAIL'))->send(new AdminNewSubscriberMail($validaData['email']));
 
         return redirect()->back()->with('success', '¡Gracias por suscribirte a nuestro boletín!');
-
-        return redirect()->back()->with('success', '¡Gracias por suscribirte a nuestro boletín!');
     }
 }

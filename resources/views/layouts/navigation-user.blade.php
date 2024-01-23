@@ -110,7 +110,7 @@
         function validarBusqueda() {
             let query = document.getElementById('campoBusqueda').value;
             if (query.trim() === '') {
-                alert('or favor, ingrese una busqueda adecuada.');
+                alert('Por favor, ingrese una busqueda adecuada.');
                 return false;
             }
             return true;

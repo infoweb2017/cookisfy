@@ -42,9 +42,7 @@ class ComentarioController extends Controller
         // return back()->with('success', 'Comentario agregado.');
         //return view('recetas.inicio', ['recetaId' => $recetaId]);
     }
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Receta $receta)
     {
         $receta->load('comentarios');
@@ -52,18 +50,12 @@ class ComentarioController extends Controller
         return view('recetas.inicio', compact('receta'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Comentario $comentario)
     {
         // Mostrar el formulario editar
         return view('comentarios.edit', compact('comentario'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Comentario $comentario)
     {
         // Verificar si el usuario autenticado es el propietario del comentario
@@ -80,9 +72,6 @@ class ComentarioController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Comentario $comentario)
     {
         $comentario->delete();

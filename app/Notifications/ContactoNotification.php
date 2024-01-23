@@ -21,7 +21,7 @@ class ContactoNotification extends Notification
         $this->contacto = $contacto;
     }
 
-    // Luego, en el método toMail o toDatabaseNotification (dependiendo de cómo envíes la notificación):
+    // Luego, en el método toMail o toDatabaseNotification
     public function toMail($notifiable)
     {
         // Accede al objeto $contacto usando $this->contacto

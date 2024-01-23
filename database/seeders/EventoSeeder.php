@@ -9,9 +9,6 @@ use Illuminate\Database\Seeder;
 
 class EventoSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $eventos = [

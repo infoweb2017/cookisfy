@@ -41,17 +41,18 @@
 
                 <!---Campo para los ingredientes --->
                 <div id="ingredientes-dinamicos">
-                    <div class="ingrediente">
-                        <select name="ingredientes[0][id]" class="form-control">
+                    <label for="ingrediente">Ingredientes:</label>
+                    <div class="ingrediente mb-2">
+                        <select name="ingredientes[0][id]" class="form-control mb-2">
                             @foreach ($ingredientes as $ingrediente)
                                 <option value="{{ $ingrediente->id }}">{{ $ingrediente->nombre }}</option>
                             @endforeach
                         </select>
-                        <input type="text" name="ingredientes[0][cantidad]" placeholder="Cantidad">
-                        <input type="text" name="ingredientes[0][unidad]" placeholder="Unidad">
+                        <input type="text" name="ingredientes[0][cantidad]" placeholder="Cantidad" class="rounded">
+                        <input type="text" name="ingredientes[0][unidad]" placeholder="Unidad" class="rounded">
                     </div>
                 </div>
-                <button type="button" id="agregar-ingrediente">Agregar Ingrediente</button>
+                <button type="button" id="agregar-ingrediente" class="bg-dark-subtle">Agregar Ingrediente</button>
 
                 <!-- Campo para los pasos de la receta -->
                 <div class="form-group" id="pasos-container">

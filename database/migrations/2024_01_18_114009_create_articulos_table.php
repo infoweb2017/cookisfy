@@ -23,14 +23,14 @@ return new class extends Migration
 
     /**
      * CREATE TABLE articulos (
-    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    titulo VARCHAR(255),
-    descripcion TEXT,
-    url VARCHAR(255),
-    imagen VARCHAR(255) NULL,
-    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+    *id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    *titulo VARCHAR(255),
+    *descripcion TEXT,
+    *url VARCHAR(255),
+    *imagen VARCHAR(255) NULL,
+    *created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    *updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+*);
      */
 
     /**

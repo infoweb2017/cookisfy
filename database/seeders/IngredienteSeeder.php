@@ -12,7 +12,6 @@ class IngredienteSeeder extends Seeder
     {
         // Seeder para la tabla de ingredientes
 
-        // Define un arreglo de ingredientes con sus detalles
         $ingredientes = [
             // ------------------ LEGUMBRES ---------------------------------------------
             ['nombre' => 'Lentejas', 'cantidad_ingredientes' => '1', 'opcional' => 0, 'unidad' => 'g', 'categoria_id' => 1],

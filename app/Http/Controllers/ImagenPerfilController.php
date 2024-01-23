@@ -47,7 +47,7 @@ class ImagenPerfilController extends Controller
             $rutaFoto = $request->file('imagen_perfil')->store('images/img_usuario');
 
             // Actualizar el campo 'foto_perfil' en la base de datos
-            $user->update([
+            $user->DB::update([
                 'imagen_perfil' => $rutaFoto,
             ]);
         }

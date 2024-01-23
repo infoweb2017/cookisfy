@@ -35,7 +35,7 @@ class BuscarController extends Controller
         // Búsqueda en artículos externos
         $artExternos = $this->obtenerArticulosExternos(); 
 
-        // Búsqueda en eventos (suponiendo que tengas un modelo de eventos)
+        // Búsqueda en eventos 
         $eventos = Evento::where('titulo', 'LIKE', '%' . $query . '%')
             ->orWhere('descripcion', 'LIKE', '%' . $query . '%')
             ->get();
@@ -108,7 +108,6 @@ class BuscarController extends Controller
                     carbohidratos. Reducimos la cantidad de patata que suele llevar este plato, sustituyendo esa parte de patata por calabacín y colinabo. ',
                 'imagen' => 'images/recetas/marmitako-br.jpeg'
             ],
-
         ];
     }
 }

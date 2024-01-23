@@ -27,7 +27,7 @@
         <footer class="container-fluid text-primary-emphasis bg-primary-subtle border border-primary-subtle">
             <!-- Grid container -->
             <div class="container p-4 pb-0 text-center">
-                <!-- Section: Social media -->
+                <!-- Seccion: Social media -->
                 <section class="mb-4">
                     <!-- Facebook -->
                     <a class="btn btn-primary btn-floating m-1" style="background-color: #677caa;"
@@ -53,7 +53,7 @@
                     <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;"
                         href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(Request::url()) }}"
                         target="_blank" role="button"><i class="fab fa-linkedin-in"></i></a>
-                </section><!-- Section: Social media -->
+                </section><!-- Seccion: Social media -->
             </div>
             <!-- Contacto -->
             <section class="mb-2">
